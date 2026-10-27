@@ -44,7 +44,7 @@ nav.main a:hover:after{width:100%}
 .burger svg{width:28px;height:28px}
 
 /* hero */
-.hero{position:relative;min-height:640px;display:flex;align-items:center;color:#fff;background:var(--navy) url(gen/hero.webp) 70% center/cover no-repeat;padding:0}
+.hero{position:relative;min-height:640px;display:flex;align-items:center;color:#fff;background:var(--navy) url(../gen/hero.webp) 70% center/cover no-repeat;padding:0}
 .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,19,34,.95) 0%,rgba(9,19,34,.82) 38%,rgba(9,19,34,.25) 70%,rgba(9,19,34,.1) 100%)}
 .hero .wrap{position:relative;width:100%;padding-top:80px;padding-bottom:150px}
 .hero .tag{display:inline-block;background:rgba(227,20,27,.15);border:1px solid rgba(227,20,27,.5);color:#ffb3b5;font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;padding:6px 12px;border-radius:30px;margin-bottom:22px}
@@ -196,7 +196,7 @@ nav.main a:hover:after{width:100%}
 .oth-grid b{font-size:15px;color:var(--navy)}
 
 /* quote */
-.quote{background:var(--navy) url(gen/manufacturing.webp) center/cover;position:relative;color:#fff}
+.quote{background:var(--navy) url(../gen/manufacturing.webp) center/cover;position:relative;color:#fff}
 .quote:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,19,34,.97) 40%,rgba(9,19,34,.88))}
 .quote .wrap{position:relative;display:grid;grid-template-columns:1.6fr 1fr;gap:48px}
 .quote h2{color:#fff}
