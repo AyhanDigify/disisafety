@@ -94,11 +94,12 @@ section{padding:110px 0;position:relative}
 /* BRANDS */
 .brands{padding:0;background:#03070e;border-bottom:1px solid var(--line)}
 .bgrid{display:grid;grid-template-columns:repeat(3,1fr)}
-.br{position:relative;padding:64px 40px 54px;border-right:1px solid var(--line);overflow:hidden;min-height:360px;display:flex;flex-direction:column;justify-content:flex-end;isolation:isolate}
+.br{position:relative;padding:330px 40px 50px;border-right:1px solid var(--line);overflow:hidden;min-height:560px;display:flex;flex-direction:column;justify-content:flex-end;isolation:isolate;background:radial-gradient(circle at 50% 30%,rgba(227,20,27,.22),transparent 55%)}
 .br:last-child{border-right:0}
-.br .im{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.22;transform:scale(1.05);transition:.7s;z-index:-1;filter:grayscale(.4)}
-.br:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#03070e 25%,rgba(3,7,14,.35));z-index:-1}
-.br:hover .im{opacity:.55;transform:scale(1);filter:none}
+.br .im{position:absolute;top:56px;left:50%;width:250px;height:250px;margin-left:-125px;border-radius:50%;background:#fff;box-shadow:0 0 0 8px rgba(255,255,255,.06),0 0 0 16px rgba(227,20,27,.18),0 30px 60px -20px rgba(0,0,0,.8);overflow:hidden;transition:.6s cubic-bezier(.2,.7,.2,1);z-index:0}
+.br .im img{width:100%;height:100%;object-fit:contain;padding:14px;transition:.6s}
+.br:hover .im{transform:translateY(-8px) scale(1.06);box-shadow:0 0 0 8px rgba(255,255,255,.1),0 0 0 16px rgba(227,20,27,.45),0 40px 70px -20px rgba(227,20,27,.5)}
+.br:hover .im img{transform:rotate(-6deg)}
 .br .no{position:absolute;top:28px;left:40px;font:700 14px "Barlow Condensed";color:var(--red2);letter-spacing:.2em}
 .br .new{position:absolute;top:24px;right:30px;background:var(--red);color:#fff;font:700 12px "Barlow Condensed";letter-spacing:.15em;padding:5px 11px;border-radius:30px}
 .br h3{font-size:clamp(58px,6.4vw,92px);font-weight:900;color:#fff;letter-spacing:-.005em;transition:.3s}
@@ -248,7 +249,7 @@ footer li{list-style:none;margin-bottom:9px}footer a:hover{color:#fff}
 @media(max-width:820px){
   .top .l{display:none}.top .wrap{justify-content:flex-end}
   .bgrid,.pgrid,.dealer .wrap,.qgrid,.fg{grid-template-columns:1fr}
-  .br{border-right:0;border-bottom:1px solid var(--line);min-height:280px;padding:54px 24px 40px}.br .no{left:24px}
+  .br{border-right:0;border-bottom:1px solid var(--line);min-height:auto;padding:280px 24px 40px}.br .im{width:210px;height:210px;margin-left:-105px;top:50px}.br .no{left:24px}
   .sl-nav{grid-template-columns:repeat(5,1fr);gap:8px}.sl-nav b,.sl-nav span{display:none}
   .sl-arr{display:none}.sl p{font-size:16px}
   .hero{min-height:560px}
@@ -414,7 +415,7 @@ function ciz(){
   menuCiz("#menu",m=>`<a href="${m.link}">${svg(m.ikon)}${t(m)}</a>`);
   menuCiz("#menuM",m=>`<a href="${m.link}">${svg(m.ikon)}${t(m)}</a>`);
   menuCiz("#menuF",m=>`<li><a href="${m.link}">${t(m)}</a></li>`);
-  markaCiz("#brands",(b,i)=>`<a class="br" href="${b.link}"><div class="im" style="background-image:url('${b.gorsel}')"></div><span class="no">0${i+1}</span>${b.logo?"":`<span class="new">${DIL==="tr"?"YENİ":"NEW"}</span>`}<h3>${b.ad}</h3><div class="sub">${b.alt}</div><p>${t(b)}</p><span class="go"><i>→</i>${DIL==="tr"?"Modelleri gör":"See models"}</span></a>`);
+  markaCiz("#brands",(b,i)=>`<a class="br" href="${b.link}"><div class="im"><img src="${b.gorsel}" alt="${b.ad} bump cap" loading="lazy"></div><span class="no">0${i+1}</span>${b.logo?"":`<span class="new">${DIL==="tr"?"YENİ":"NEW"}</span>`}<h3>${b.ad}</h3><div class="sub">${b.alt}</div><p>${t(b)}</p><span class="go"><i>→</i>${DIL==="tr"?"Modelleri gör":"See models"}</span></a>`);
   document.getElementById("rail").innerHTML=MODELLER.map(m=>`<a class="pc" href="product.html?id=${m[0].toLowerCase()}-${m[1]}"><div class="ph"><img src="${m[2]}" alt="${m[0]} ${m[1]}" loading="lazy"><em>EN 812</em></div><div class="bd"><small>${m[0]}® · bump cap</small><h4>${m[0]} ${m[1]}</h4><p>${DIL==="tr"?m[3]:m[4]}</p></div></a>`).join("");
   const s=SEKTOR[DIL];document.getElementById("mq").innerHTML=[...s,...s].map(x=>`<span>${x}</span><span>✦</span>`).join("");
   banner("#hero");
