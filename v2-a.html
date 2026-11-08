@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Disi Safety — Tasarım A · Endüstriyel</title>
+<link rel="icon" href="https://disisafety.com/wp-content/uploads/2024/11/cropped-ds-32x32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--red:#e3141b;--red2:#ff3b30;--ink:#070d18;--navy:#0d1b2e;--navy2:#13253d;--line:rgba(255,255,255,.1);--mut:#9aa6b8;--w:#fff;--max:1320px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Barlow,system-ui,sans-serif;background:var(--ink);color:#e8edf4;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body.noscroll{overflow:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+h1,h2,h3,.cond{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;letter-spacing:.01em;line-height:1}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:4px;font-weight:700;font-size:15px;letter-spacing:.03em;text-transform:uppercase;font-family:"Barlow Condensed";transition:.25s;cursor:pointer;border:0}
+.btn-red{background:var(--red);color:#fff;box-shadow:0 10px 30px -10px rgba(227,20,27,.8)}
+.btn-red:hover{background:var(--red2);transform:translateY(-2px)}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.35);color:#fff;backdrop-filter:blur(6px)}
+.btn-ghost:hover{background:#fff;color:var(--ink)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font:700 13px "Barlow Condensed";letter-spacing:.24em;text-transform:uppercase;color:var(--red2)}
+.eyebrow:before{content:"";width:28px;height:2px;background:var(--red)}
+section{padding:110px 0;position:relative}
+.sec-h{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:50px;flex-wrap:wrap}
+.sec-h h2{font-size:clamp(38px,5vw,64px);font-weight:800;margin-top:14px;color:#fff}
+.sec-h p{max-width:460px;color:var(--mut)}
+
+/* TOPBAR */
+.top{background:#03070e;font-size:13px;color:var(--mut);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;height:40px;gap:20px}
+.top .l{display:flex;gap:22px}.top .l a:hover{color:#fff}
+.top .r{display:flex;gap:16px;align-items:center}
+.bayi{display:inline-flex;align-items:center;gap:7px;background:rgba(227,20,27,.14);color:#fff;padding:6px 14px;border-radius:30px;font-weight:600;border:1px solid rgba(227,20,27,.5);transition:.2s}
+.bayi:hover{background:var(--red)}
+.bayi svg{width:15px;height:15px}
+.dil{display:flex;border:1px solid var(--line);border-radius:30px;overflow:hidden}
+.dil button{background:none;border:0;color:var(--mut);font:600 12px Barlow;padding:5px 11px;cursor:pointer}
+.dil button.on{background:#fff;color:var(--ink)}
+
+/* HEADER */
+.hdr{position:sticky;top:0;z-index:50;background:rgba(7,13,24,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);transition:.3s}
+.hdr .wrap{display:flex;align-items:center;gap:28px;height:84px;transition:.3s}
+.hdr.scrolled .wrap{height:66px}
+.logo img{height:40px}
+.mnu{display:flex;gap:6px;margin-left:auto}
+.mnu a{display:flex;align-items:center;gap:8px;padding:11px 16px;border-radius:4px;font:700 16px "Barlow Condensed";letter-spacing:.06em;text-transform:uppercase;color:#cfd7e3;position:relative;transition:.2s}
+.mnu a svg{width:18px;height:18px;color:var(--red2)}
+.mnu a:after{content:"";position:absolute;left:16px;right:16px;bottom:5px;height:2px;background:var(--red);transform:scaleX(0);transition:.25s;transform-origin:left}
+.mnu a:hover{color:#fff;background:rgba(255,255,255,.04)}.mnu a:hover:after{transform:scaleX(1)}
+.hdr .btn{padding:12px 20px}
+.burger{display:none;background:none;border:0;color:#fff;width:44px;height:44px;margin-left:auto}
+.mnav{position:fixed;inset:0;top:0;background:var(--ink);z-index:60;padding:90px 24px 30px;display:flex;flex-direction:column;gap:6px;transform:translateX(100%);transition:.35s}
+.mnav.open{transform:none}
+.mnav a{font:800 34px "Barlow Condensed";text-transform:uppercase;padding:10px 0;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px}
+.mnav a svg{width:26px;color:var(--red)}
+.mnav .x{position:absolute;top:22px;right:20px;background:none;border:0;color:#fff;font-size:40px}
+
+/* SLIDER */
+.hero{position:relative;height:calc(100vh - 124px);min-height:600px;max-height:900px;overflow:hidden;background:#000}
+.sl{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity 1.1s ease,visibility 1.1s}
+.sl.on{opacity:1;visibility:visible}
+.sl-bg{position:absolute;inset:0;background-size:cover;transform:scale(1.12);transition:transform 7s ease-out}
+.sl.on .sl-bg{transform:scale(1)}
+.sl:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,8,16,.94) 0%,rgba(4,8,16,.72) 38%,rgba(4,8,16,.15) 75%),linear-gradient(0deg,rgba(4,8,16,.85),transparent 40%)}
+.sl-in{position:relative;z-index:2;height:100%;max-width:var(--max);margin:0 auto;padding:0 24px;display:flex;align-items:center}
+.sl-txt{max-width:680px}
+.sl-txt>*{opacity:0;transform:translateY(30px);transition:.8s cubic-bezier(.2,.7,.2,1)}
+.sl.on .sl-txt>*{opacity:1;transform:none}
+.sl.on .sl-txt>*:nth-child(2){transition-delay:.15s}.sl.on .sl-txt>*:nth-child(3){transition-delay:.3s}.sl.on .sl-txt>*:nth-child(4){transition-delay:.45s}
+.sl-tag{display:inline-block;background:var(--red);color:#fff;font:700 13px "Barlow Condensed";letter-spacing:.2em;text-transform:uppercase;padding:7px 14px;clip-path:polygon(0 0,100% 0,94% 100%,0 100%);padding-right:22px}
+.sl h1{font-size:clamp(46px,7vw,96px);font-weight:900;color:#fff;margin:22px 0 20px;line-height:.92}
+.sl h1 em{font-style:normal;white-space:nowrap;color:transparent;-webkit-text-stroke:2px #fff;text-stroke:2px #fff}
+.sl p{font-size:19px;color:#c5cfdc;max-width:520px}
+.sl-cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+.sl-nav{position:absolute;z-index:5;left:0;right:0;bottom:0;max-width:var(--max);margin:0 auto;padding:0 24px 28px;display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.sl-nav button{background:none;border:0;text-align:left;color:#8e9bb0;cursor:pointer;font-family:inherit;padding-top:16px;position:relative}
+.sl-nav button i{position:absolute;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,.18);overflow:hidden}
+.sl-nav button i:after{content:"";position:absolute;inset:0;background:var(--red);transform:scaleX(0);transform-origin:left}
+.sl-nav button.on i:after{animation:prog var(--dur) linear forwards}
+@keyframes prog{to{transform:scaleX(1)}}
+.sl-nav span{font:700 13px "Barlow Condensed";color:var(--red2);margin-right:8px}
+.sl-nav b{font:600 15px "Barlow Condensed";text-transform:uppercase;letter-spacing:.06em}
+.sl-nav button.on b,.sl-nav button:hover b{color:#fff}
+.sl-arr{position:absolute;z-index:5;right:max(24px,calc((100vw - var(--max))/2 + 24px));top:50%;display:flex;flex-direction:column;gap:10px;transform:translateY(-50%)}
+.sl-arr button{width:52px;height:52px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);background:rgba(0,0,0,.25);color:#fff;font-size:20px;cursor:pointer;transition:.2s;backdrop-filter:blur(6px)}
+.sl-arr button:hover{background:var(--red);border-color:var(--red)}
+.sl-count{font:500 15px "Barlow Condensed";color:#8e9bb0;text-align:center}.sl-count b{color:#fff;font-size:22px}
+
+/* BRANDS */
+.brands{padding:0;background:#03070e;border-bottom:1px solid var(--line)}
+.bgrid{display:grid;grid-template-columns:repeat(3,1fr)}
+.br{position:relative;padding:64px 40px 54px;border-right:1px solid var(--line);overflow:hidden;min-height:360px;display:flex;flex-direction:column;justify-content:flex-end;isolation:isolate}
+.br:last-child{border-right:0}
+.br .im{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.22;transform:scale(1.05);transition:.7s;z-index:-1;filter:grayscale(.4)}
+.br:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#03070e 25%,rgba(3,7,14,.35));z-index:-1}
+.br:hover .im{opacity:.55;transform:scale(1);filter:none}
+.br .no{position:absolute;top:28px;left:40px;font:700 14px "Barlow Condensed";color:var(--red2);letter-spacing:.2em}
+.br .new{position:absolute;top:24px;right:30px;background:var(--red);color:#fff;font:700 12px "Barlow Condensed";letter-spacing:.15em;padding:5px 11px;border-radius:30px}
+.br h3{font-size:clamp(58px,6.4vw,92px);font-weight:900;color:#fff;letter-spacing:-.005em;transition:.3s}
+.br:hover h3{color:var(--red2)}
+.br .sub{font:600 15px "Barlow Condensed";letter-spacing:.42em;text-transform:uppercase;color:var(--mut);margin-top:6px;display:flex;align-items:center;gap:12px}
+.br .sub:before{content:"";width:22px;height:2px;background:var(--red)}
+.br p{margin-top:16px;color:#b6c1d0;font-size:15px;max-width:300px}
+.br .go{margin-top:22px;font:700 14px "Barlow Condensed";letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.br .go i{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--red);display:grid;place-items:center;font-style:normal;transition:.3s}
+.br:hover .go i{background:var(--red);transform:translateX(6px)}
+
+/* STATS */
+.stats{padding:70px 0;background:linear-gradient(90deg,var(--red),#b10d13)}
+.sgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+.sgrid div{border-left:2px solid rgba(255,255,255,.3);padding-left:20px}
+.sgrid b{font:900 clamp(40px,4.5vw,62px)/1 "Barlow Condensed";color:#fff;display:block}
+.sgrid span{color:rgba(255,255,255,.85);font-weight:500}
+
+/* MODELS rail */
+.rail{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:20px;scrollbar-width:thin;scrollbar-color:var(--red) transparent}
+.pc{flex:0 0 290px;scroll-snap-align:start;background:var(--navy);border:1px solid var(--line);border-radius:10px;overflow:hidden;transition:.35s}
+.pc:hover{transform:translateY(-8px);border-color:rgba(227,20,27,.6);box-shadow:0 30px 60px -30px rgba(227,20,27,.5)}
+.pc .ph{aspect-ratio:1;background:#fff;position:relative;overflow:hidden}
+.pc .ph img{width:100%;height:100%;object-fit:cover;transition:.6s}
+.pc:hover .ph img{transform:scale(1.07)}
+.pc .ph em{position:absolute;top:12px;left:12px;background:var(--ink);color:#fff;font:700 11px "Barlow Condensed";letter-spacing:.12em;padding:4px 9px;border-radius:3px;font-style:normal}
+.pc .bd{padding:18px 20px 22px}
+.pc small{color:var(--red2);font:700 12px "Barlow Condensed";letter-spacing:.2em;text-transform:uppercase}
+.pc h4{font:800 26px "Barlow Condensed";text-transform:uppercase;color:#fff;margin:2px 0 6px}
+.pc p{font-size:14px;color:var(--mut)}
+.rail-ctl{display:flex;gap:10px}
+.rail-ctl button{width:48px;height:48px;border-radius:50%;border:1.5px solid var(--line);background:none;color:#fff;font-size:18px;cursor:pointer}
+.rail-ctl button:hover{background:var(--red);border-color:var(--red)}
+
+/* PRODUCTION */
+.prod{background:var(--navy)}
+.pgrid{display:grid;grid-template-columns:1.05fr 1fr;gap:60px;align-items:center}
+.pimg{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:4/3.3}
+.pimg img{width:100%;height:100%;object-fit:cover}
+.pimg .play{position:absolute;inset:0;display:grid;place-items:center}
+.pimg .play span{width:90px;height:90px;border-radius:50%;background:var(--red);display:grid;place-items:center;box-shadow:0 0 0 0 rgba(227,20,27,.6);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 26px rgba(227,20,27,0)}100%{box-shadow:0 0 0 0 rgba(227,20,27,0)}}
+.pimg .play svg{width:30px;margin-left:5px}
+.steps{display:flex;flex-direction:column;gap:6px;margin-top:30px}
+.st{display:grid;grid-template-columns:56px 1fr;gap:18px;padding:18px 0;border-bottom:1px solid var(--line)}
+.st b{font:900 40px/1 "Barlow Condensed";color:transparent;-webkit-text-stroke:1.5px var(--red)}
+.st h4{font:800 22px "Barlow Condensed";text-transform:uppercase;color:#fff}
+.st p{color:var(--mut);font-size:15px}
+
+/* CATEGORIES */
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.cat{position:relative;border-radius:10px;overflow:hidden;min-height:440px;padding:34px;display:flex;flex-direction:column;justify-content:flex-end;isolation:isolate;border:1px solid var(--line)}
+.cat .bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:-2;transition:.8s}
+.cat:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(4,8,16,.97) 30%,rgba(4,8,16,.3));z-index:-1}
+.cat:hover .bg{transform:scale(1.08)}
+.cat h3{font-size:46px;font-weight:900;color:#fff}
+.cat p{color:#b6c1d0;margin:10px 0 18px}
+.ic{display:flex;gap:10px;flex-wrap:wrap}
+.ic span{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.07);border:1px solid var(--line);padding:6px 11px 6px 7px;border-radius:30px;font-size:13px}
+.ic i{font-style:normal}
+.ic img{width:24px;height:24px;filter:invert(1);opacity:.85}
+
+/* DOCS */
+.docs{background:#03070e}
+.dgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.doc{background:var(--navy);border:1px solid var(--line);border-radius:10px;padding:28px;transition:.3s;display:flex;flex-direction:column;gap:12px}
+.doc:hover{border-color:var(--red);transform:translateY(-4px)}
+.doc .ty{display:flex;justify-content:space-between;align-items:center}
+.doc .ty svg{width:40px;height:40px;color:var(--red2)}
+.doc .ty em{font:700 12px "Barlow Condensed";letter-spacing:.15em;background:rgba(255,255,255,.08);padding:4px 9px;border-radius:3px;font-style:normal}
+.doc h4{font:800 22px "Barlow Condensed";text-transform:uppercase;color:#fff}
+.doc p{color:var(--mut);font-size:14px;flex:1}
+.doc a{font:700 14px "Barlow Condensed";letter-spacing:.12em;text-transform:uppercase;color:var(--red2);display:flex;gap:8px;align-items:center}
+
+/* SECTORS marquee */
+.mq{padding:34px 0;background:var(--red);overflow:hidden;white-space:nowrap}
+.mq div{display:inline-flex;gap:50px;animation:mq 32s linear infinite;font:900 44px "Barlow Condensed";text-transform:uppercase;color:#fff}
+.mq div span:nth-child(even){color:transparent;-webkit-text-stroke:1.5px #fff}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* DEALER CTA */
+.dealer{background:linear-gradient(120deg,var(--navy2),#050a14);overflow:hidden}
+.dealer .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:50px;align-items:center}
+.dealer h2{font-size:clamp(40px,5vw,66px);font-weight:900;color:#fff;margin:14px 0}
+.dealer ul{list-style:none;display:grid;gap:12px;margin:24px 0 30px}
+.dealer li{display:flex;gap:12px;align-items:center;color:#c5cfdc}
+.dealer li:before{content:"✓";width:26px;height:26px;border-radius:50%;background:rgba(227,20,27,.2);color:var(--red2);display:grid;place-items:center;font-weight:700;flex-shrink:0}
+.mock{background:#0b1626;border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:0 40px 80px -30px #000;transform:perspective(1200px) rotateY(-10deg) rotateX(4deg)}
+.mock .bar{display:flex;gap:6px;margin-bottom:16px}.mock .bar i{width:10px;height:10px;border-radius:50%;background:#2a3a52}
+.mock .row{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;padding:12px;border-radius:6px;font-size:13px;color:#b6c1d0}
+.mock .row:nth-child(odd){background:rgba(255,255,255,.03)}
+.mock .row.h{color:#fff;font-weight:700;background:rgba(227,20,27,.15)}
+.mock .row b{color:#3ddc84;font-weight:600}
+
+/* QUOTE */
+.quote{background:var(--navy)}
+.qgrid{display:grid;grid-template-columns:1fr 1.3fr;gap:60px}
+.qgrid h2{font-size:clamp(40px,5vw,64px);font-weight:900;color:#fff;margin:14px 0}
+.ct{display:grid;gap:14px;margin-top:30px}
+.ct a{display:flex;gap:14px;align-items:center;padding:16px;border:1px solid var(--line);border-radius:8px}
+.ct a:hover{border-color:var(--red)}
+form{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:#0a1525;padding:34px;border-radius:12px;border:1px solid var(--line)}
+form .f{grid-column:1/-1}
+input,select,textarea{width:100%;background:#050b16;border:1px solid #1e2f47;border-radius:6px;padding:14px 16px;color:#fff;font:15px Barlow}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--red)}
+textarea{min-height:110px;resize:vertical}
+
+footer{background:#02050b;padding:70px 0 30px;color:var(--mut);font-size:14px;border-top:3px solid var(--red)}
+.fg{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+footer h5{font:800 17px "Barlow Condensed";text-transform:uppercase;letter-spacing:.1em;color:#fff;margin-bottom:16px}
+footer li{list-style:none;margin-bottom:9px}footer a:hover{color:#fff}
+.fb{border-top:1px solid var(--line);margin-top:50px;padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+/* BACK TO TOP — dairesel ilerleme */
+.totop{position:fixed;right:26px;bottom:100px;z-index:70;width:58px;height:58px;border-radius:50%;background:#0b1626;border:0;color:#fff;cursor:pointer;display:grid;place-items:center;opacity:0;transform:translateY(20px) scale(.8);transition:.35s;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.totop.show{opacity:1;transform:none}
+.totop .ring{position:absolute;inset:0;transform:rotate(-90deg)}
+.totop .ring circle{fill:none;stroke:rgba(255,255,255,.12);stroke-width:3}
+.totop .ring .p{stroke:var(--red);stroke-linecap:round;transition:stroke-dashoffset .1s}
+.totop .ar{width:20px;height:20px;transition:.3s}
+.totop span{display:none}
+.totop:hover{background:var(--red)}.totop:hover .ar{transform:translateY(-3px)}
+.wa{position:fixed;right:26px;bottom:26px;z-index:70;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 10px 30px rgba(37,211,102,.4)}
+.wa svg{width:30px;fill:#fff}
+
+/* POPUP — ortada, görselli */
+.pop{position:fixed;inset:0;z-index:100;background:rgba(2,5,11,.75);backdrop-filter:blur(6px);display:grid;place-items:center;padding:20px;opacity:0;transition:.4s}
+.pop.open{opacity:1}
+.pop-box{position:relative;background:var(--navy);border:1px solid var(--line);border-radius:14px;overflow:hidden;max-width:780px;width:100%;display:grid;grid-template-columns:1fr 1.1fr;transform:translateY(30px) scale(.96);transition:.45s cubic-bezier(.2,.7,.2,1)}
+.pop.open .pop-box{transform:none}
+.pop-img{background-size:cover;background-position:center;min-height:340px}
+.pop-body{padding:44px 38px}
+.pop-tag{display:inline-block;background:var(--red);color:#fff;font:700 12px "Barlow Condensed";letter-spacing:.2em;text-transform:uppercase;padding:5px 12px;border-radius:3px}
+.pop h3{font:900 40px/1 "Barlow Condensed";text-transform:uppercase;color:#fff;margin:16px 0 12px}
+.pop p{color:#b6c1d0;margin-bottom:26px}
+.pop-x{position:absolute;top:12px;right:14px;width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.5);color:#fff;border:0;font-size:26px;cursor:pointer;z-index:2}
+.pop-x:hover{background:var(--red)}
+
+.rv{opacity:0;transform:translateY(40px);transition:1s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+@media(max-width:1100px){
+  .mnu,.hdr .btn{display:none}.burger{display:block}
+  .sgrid{grid-template-columns:repeat(3,1fr)}.dgrid{grid-template-columns:1fr 1fr}
+  .cats{grid-template-columns:1fr}.cat{min-height:340px}
+}
+@media(max-width:820px){
+  .top .l{display:none}.top .wrap{justify-content:flex-end}
+  .bgrid,.pgrid,.dealer .wrap,.qgrid,.fg{grid-template-columns:1fr}
+  .br{border-right:0;border-bottom:1px solid var(--line);min-height:280px;padding:54px 24px 40px}.br .no{left:24px}
+  .sl-nav{grid-template-columns:repeat(5,1fr);gap:8px}.sl-nav b,.sl-nav span{display:none}
+  .sl-arr{display:none}.sl p{font-size:16px}
+  .hero{min-height:560px}
+  .sgrid{grid-template-columns:1fr 1fr}
+  .pop-box{grid-template-columns:1fr}.pop-img{min-height:170px}.pop-body{padding:28px}
+  form{grid-template-columns:1fr;padding:22px}
+  section{padding:80px 0}
+  .mock{transform:none}
+  .totop{right:18px;bottom:88px;width:50px;height:50px}.wa{right:18px;bottom:20px;width:52px;height:52px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="top"><div class="wrap">
+  <div class="l"><a href="tel:+902163084432">+90 216 308 44 32</a><a href="mailto:info@disisafety.com">info@disisafety.com</a><span data-en="EN 812 Bump Cap Manufacturer · Since 1986">EN 812 Darbe Emici Şapka Üreticisi · 1986'dan beri</span></div>
+  <div class="r">
+    <a class="bayi" href="bayi.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg><span data-en="Dealer Login">Bayi Girişi</span></a>
+    <div class="dil"><button data-l="tr">TR</button><button data-l="en">EN</button></div>
+  </div>
+</div></div>
+
+<header class="hdr"><div class="wrap">
+  <a href="v2-a.html" class="logo"><img src="img/footer-logo-2.png" alt="Disi Safety"></a>
+  <nav class="mnu" id="menu"></nav>
+  <a href="#teklif" class="btn btn-red" data-en="Request a Quote">Teklif Al</a>
+  <button class="burger" aria-label="Menü"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+</div></header>
+<div class="mnav"><button class="x" onclick="this.parentNode.classList.remove('open');document.body.classList.remove('noscroll')">×</button><div id="menuM" style="display:contents"></div><a href="bayi.html" style="color:var(--red2)"><span data-en="Dealer Login">Bayi Girişi</span></a></div>
+
+<!-- KAYAN BANNER -->
+<section class="hero" id="hero" style="padding:0">
+  <div class="sl-track"></div>
+  <div class="sl-arr"><button class="sl-prev" aria-label="Önceki">↑</button><div class="sl-count"></div><button class="sl-next" aria-label="Sonraki">↓</button></div>
+  <div class="sl-nav"></div>
+</section>
+
+<!-- MARKALAR -->
+<section class="brands" id="markalar"><div class="bgrid" id="brands"></div></section>
+
+<!-- İSTATİSTİK -->
+<section class="stats"><div class="wrap sgrid">
+  <div class="rv"><b><span data-n="40">40</span>+</b><span data-en="Years of experience">Yıllık tecrübe</span></div>
+  <div class="rv"><b><span data-n="50000">50.000</span>+</b><span data-en="Caps per month">Aylık şapka üretimi</span></div>
+  <div class="rv"><b><span data-n="1000">1.000</span> m²</b><span data-en="Production facility">Üretim tesisi</span></div>
+  <div class="rv"><b><span data-n="250">250</span></b><span data-en="Min. order (pcs)">Min. sipariş (adet)</span></div>
+  <div class="rv"><b>%<span data-n="100">100</span></b><span data-en="Quality control">Kalite kontrol</span></div>
+</div></section>
+
+<!-- MODELLER -->
+<section id="modeller"><div class="wrap">
+  <div class="sec-h rv"><div><span class="eyebrow" data-en="Product range">Ürün yelpazesi</span><h2 data-en="Bump Cap Models">Bump Cap Modelleri</h2></div>
+    <div class="rail-ctl"><button onclick="rail(-1)" aria-label="Geri">←</button><button onclick="rail(1)" aria-label="İleri">→</button></div></div>
+  <div class="rail" id="rail"></div>
+</div></section>
+
+<!-- SEKTÖRLER -->
+<div class="mq"><div id="mq"></div></div>
+
+<!-- ÜRETİM -->
+<section class="prod" id="uretim"><div class="wrap pgrid">
+  <div class="pimg rv"><img src="gen/factory.webp" alt="Disi Safety üretim tesisi" loading="lazy"><a class="play" href="#uretim" aria-label="Fabrika videosu"><span><svg viewBox="0 0 24 24" fill="#fff"><path d="M6 4l14 8-14 8z"/></svg></span></a></div>
+  <div class="rv">
+    <span class="eyebrow" data-en="Production">Üretim</span>
+    <h2 class="cond" style="font-size:clamp(40px,5vw,62px);font-weight:900;color:#fff;margin:14px 0" data-en="Made in our own factory">Kendi fabrikamızda üretim</h2>
+    <p style="color:var(--mut)" data-en="Except fabric supply, every step is in-house — that means speed, flexibility and consistent quality.">Kumaş tedariki dışında tüm süreçler şirket bünyesinde — hız, esneklik ve tutarlı kalite.</p>
+    <div class="steps">
+      <div class="st"><b>01</b><div><h4 data-en="Cutting & sewing">Kesim & dikim</h4><p data-en="Precision panels, reinforced seams.">Hassas panel kesimi, güçlendirilmiş dikiş.</p></div></div>
+      <div class="st"><b>02</b><div><h4 data-en="Embroidery & logo">Nakış & logo</h4><p data-en="Your logo embroidered or printed in-house.">Logonuz kendi makinelerimizde işlenir.</p></div></div>
+      <div class="st"><b>03</b><div><h4 data-en="ABS shell assembly">ABS kabuk montajı</h4><p data-en="Inner shell + EVA absorber fitted by hand.">İç kabuk + EVA darbe emici elde yerleştirilir.</p></div></div>
+      <div class="st"><b>04</b><div><h4 data-en="EN 812 quality control">EN 812 kalite kontrol</h4><p data-en="Every batch checked before shipment.">Her parti sevkiyattan önce kontrol edilir.</p></div></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- KKD / TEKSTİL / PROMOSYON -->
+<section id="kkd"><div class="wrap">
+  <div class="sec-h rv"><div><span class="eyebrow" data-en="More than bump caps">Bump cap'in ötesinde</span><h2 data-en="Product Groups">Ürün Grupları</h2></div><p data-en="Corporate textile and PPE for the same customer — one supplier, one invoice.">Aynı müşteriye kurumsal tekstil ve KKD — tek tedarikçi, tek fatura.</p></div>
+  <div class="cats">
+    <a class="cat rv" href="#kkd"><div class="bg" style="background-image:url(img/slider-33.jpg)"></div><h3 data-en="PPE">KKD</h3><p data-en="Personal protective equipment from head to toe.">Baştan ayağa kişisel koruyucu donanım.</p>
+      <div class="ic"><span><img src="img/head.png" alt=""><i data-en="Helmet">Baret</i></span><span><img src="img/eye-and-face-1.png" alt=""><i data-en="Face">Yüz</i></span><span><img src="img/footwear.png" alt=""><i data-en="Footwear">Ayakkabı</i></span><span><img src="img/body-1.png" alt=""><i data-en="Coverall">Tulum</i></span></div></a>
+    <a class="cat rv" id="tekstil" href="#tekstil"><div class="bg" style="background-image:url(img/slider2.jpg)"></div><h3 data-en="Textile">Tekstil</h3><p data-en="Workwear and corporate apparel with your logo.">Logolu iş kıyafeti ve kurumsal giyim.</p>
+      <div class="ic"><span><img src="img/polo-t-shirt.png" alt=""><i>Polo</i></span><span><img src="img/sweatshirt.png" alt=""><i>Sweatshirt</i></span><span><img src="img/jacket.png" alt=""><i data-en="Jacket">Mont</i></span><span><img src="img/workwear.png" alt=""><i data-en="Vest">Yelek</i></span></div></a>
+    <a class="cat rv" id="promosyon" href="#promosyon"><div class="bg" style="background-image:url(img/slider1.jpg)"></div><h3 data-en="Promotional">Promosyon</h3><p data-en="Caps, bags and giveaways for events and teams.">Etkinlik ve ekipler için şapka, çanta, hediye.</p>
+      <div class="ic"><span><img src="img/hat.png" alt=""><i data-en="Cap">Şapka</i></span><span><img src="img/bag.png" alt=""><i data-en="Bag">Çanta</i></span><span><img src="img/polo-t-shirt.png" alt=""><i data-en="T-shirt">Tişört</i></span></div></a>
+  </div>
+</div></section>
+
+<!-- BELGELER -->
+<section class="docs" id="belgeler"><div class="wrap">
+  <div class="sec-h rv"><div><span class="eyebrow" data-en="Certificates & downloads">Sertifika & indirme</span><h2 data-en="Documents">Belgeler</h2></div><p data-en="Always-current certificates and technical files, downloadable as PDF.">Güncel sertifika ve teknik dosyalar, PDF olarak indirilebilir.</p></div>
+  <div class="dgrid">
+    <div class="doc rv"><div class="ty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><em>PDF</em></div><h4 data-en="EN 812 Certificate">EN 812 Sertifikası</h4><p data-en="EU type-examination certificate.">AB tip inceleme sertifikası.</p><a href="#" data-en="Download ↓">İndir ↓</a></div>
+    <div class="doc rv"><div class="ty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h8M9 17h6"/></svg><em>PDF</em></div><h4 data-en="EU Declaration">AB Uygunluk Beyanı</h4><p data-en="Declaration of conformity (DoC).">Uygunluk beyanı (DoC).</p><a href="#" data-en="Download ↓">İndir ↓</a></div>
+    <div class="doc rv"><div class="ty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 9v11"/></svg><em>PDF</em></div><h4 data-en="Technical Sheets">Teknik Föyler</h4><p data-en="Model dimensions, materials, care.">Model ölçüleri, malzeme, bakım.</p><a href="#" data-en="Download ↓">İndir ↓</a></div>
+    <div class="doc rv"><div class="ty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 5c3-1 5-1 8 1 3-2 5-2 8-1v14c-3-1-5-1-8 1-3-2-5-2-8-1z"/><path d="M12 6v14"/></svg><em>PDF</em></div><h4 data-en="Catalog 2026">Katalog 2026</h4><p data-en="All Shelter, Lymra and Houcap models.">Tüm Shelter, Lymra ve Houcap modelleri.</p><a href="#" data-en="Download ↓">İndir ↓</a></div>
+  </div>
+</div></section>
+
+<!-- BAYİ -->
+<section class="dealer"><div class="wrap">
+  <div class="rv">
+    <span class="eyebrow" data-en="For dealers">Bayilerimiz için</span>
+    <h2 data-en="Dealer Portal">Bayi Portalı</h2>
+    <p style="color:var(--mut)" data-en="Our dealers log in and reach everything they need on one page.">Bayilerimiz giriş yapıp ihtiyaç duydukları her şeye tek sayfadan ulaşır.</p>
+    <ul>
+      <li data-en="Dealer price list & stock status">Bayi fiyat listesi & stok durumu</li>
+      <li data-en="Order history and shipment tracking">Sipariş geçmişi ve kargo takibi</li>
+      <li data-en="High-res product photos & catalogs">Yüksek çözünürlüklü ürün görselleri & kataloglar</li>
+      <li data-en="Quick re-order form">Hızlı tekrar sipariş formu</li>
+    </ul>
+    <a class="btn btn-red" href="bayi.html" data-en="Dealer Login →">Bayi Girişi →</a>
+  </div>
+  <div class="mock rv"><div class="bar"><i></i><i></i><i></i></div>
+    <div class="row h"><span data-en="Product">Ürün</span><span data-en="Price">Fiyat</span><span data-en="Stock">Stok</span></div>
+    <div class="row"><span>Shelter 05 · Lacivert</span><span>••••</span><b data-en="In stock">Stokta</b></div>
+    <div class="row"><span>Shelter 07 · Reflektif</span><span>••••</span><b data-en="In stock">Stokta</b></div>
+    <div class="row"><span>Lymra 03 · Neon</span><span>••••</span><b style="color:#f2c318" data-en="Limited">Sınırlı</b></div>
+    <div class="row"><span>Houcap 01</span><span>••••</span><b style="color:#8e9bb0" data-en="Soon">Yakında</b></div>
+  </div>
+</div></section>
+
+<!-- TEKLİF -->
+<section class="quote" id="teklif"><div class="wrap qgrid">
+  <div class="rv">
+    <span class="eyebrow" data-en="Contact">İletişim</span>
+    <h2 data-en="Request a Quote">Teklif Alın</h2>
+    <p style="color:var(--mut)" data-en="Tell us model, quantity and logo — we reply within 24 hours.">Model, adet ve logonuzu yazın — 24 saat içinde dönüş yapıyoruz.</p>
+    <div class="ct">
+      <a href="tel:+902163084432">📞 +90 216 308 44 32</a>
+      <a href="mailto:info@disisafety.com">✉️ info@disisafety.com</a>
+      <a href="https://wa.me/902163084432" target="_blank" rel="noopener">💬 WhatsApp</a>
+    </div>
+  </div>
+  <form class="rv" onsubmit="event.preventDefault();this.innerHTML='<p style=\'grid-column:1/-1;font-size:20px;color:#fff\'>✓ Talebiniz alındı (demo).</p>'">
+    <input placeholder="Ad Soyad" data-en-ph="Full name" required><input placeholder="Firma" data-en-ph="Company">
+    <input type="email" placeholder="E-posta" data-en-ph="Email" required><input placeholder="Ülke" data-en-ph="Country">
+    <select><option>Shelter</option><option>Lymra</option><option>Houcap</option><option data-en="Textile / PPE">Tekstil / KKD</option></select>
+    <select><option>250–500</option><option>500–1.000</option><option>1.000–5.000</option><option>5.000+</option></select>
+    <textarea class="f" placeholder="Mesajınız (renk, siperlik, logo...)" data-en-ph="Message (color, peak, logo...)"></textarea>
+    <button class="btn btn-red f" style="justify-content:center" data-en="Send Request">Talep Gönder</button>
+  </form>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="fg">
+    <div><img src="img/footer-logo-2.png" alt="Disi Safety" style="height:44px"><p style="margin-top:16px;max-width:300px" data-en="EN 812 bump cap manufacturer and corporate textile producer from Istanbul, since 1986.">1986'dan beri İstanbul'da EN 812 darbe emici şapka ve kurumsal tekstil üreticisi.</p></div>
+    <div><h5 data-en="Brands">Markalar</h5><ul><li><a href="category.html?brand=shelter">Shelter®</a></li><li><a href="category.html?brand=lymra">Lymra®</a></li><li><a href="#markalar">Houcap</a></li></ul></div>
+    <div><h5 data-en="Menu">Menü</h5><ul id="menuF"></ul></div>
+    <div><h5 data-en="Contact">İletişim</h5><ul><li>Ferah Mah. Ferah Yolu Sok. No:6/3<br>Üsküdar / İstanbul</li><li><a href="tel:+902163084432">+90 216 308 44 32</a></li><li><a href="bayi.html" data-en="Dealer Login">Bayi Girişi</a></li></ul></div>
+  </div>
+  <div class="fb"><span>© 2026 Disi Safety</span><span>EN 812 · Shelter® · Lymra® · Houcap</span></div>
+</div></footer>
+
+<a class="wa" href="https://wa.me/902163084432" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg></a>
+
+<script src="js/v2.js"></script>
+<script>
+const MODELLER=[["Shelter","05","img/shelter-6.jpg","Lacivert · hava delikli","Navy · air holes"],["Shelter","07","img/shelter-8.jpg","Lacivert · reflektif","Navy · reflective"],["Shelter","03","img/shelter-4.jpg","Kırmızı · tam file","Red · full mesh"],["Lymra","04","img/lymra-tek-kirmizi.jpg","Kırmızı · fileli","Red · mesh"],["Shelter","06","img/shelter-7.jpg","Sarı · file panel","Yellow · mesh panels"],["Lymra","03","img/lymra-tek-neon.jpg","Neon sarı · hi-vis","Neon yellow · hi-vis"],["Shelter","01","img/shelter-11.jpg","Siyah · turuncu biye","Black · orange trim"],["Lymra","05","img/lymra-7.jpg","Kışlık · kulaklıklı","Winter · ear flap"]];
+const SEKTOR={tr:["Otomotiv","Lojistik","Havacılık","Enerji","Fabrika","Bakım & Montaj","Gıda","Depolama"],en:["Automotive","Logistics","Aviation","Energy","Factory","Maintenance","Food","Warehousing"]};
+function ciz(){
+  menuCiz("#menu",m=>`<a href="${m.link}">${svg(m.ikon)}${t(m)}</a>`);
+  menuCiz("#menuM",m=>`<a href="${m.link}">${svg(m.ikon)}${t(m)}</a>`);
+  menuCiz("#menuF",m=>`<li><a href="${m.link}">${t(m)}</a></li>`);
+  markaCiz("#brands",(b,i)=>`<a class="br" href="${b.link}"><div class="im" style="background-image:url('${b.gorsel}')"></div><span class="no">0${i+1}</span>${b.logo?"":`<span class="new">${DIL==="tr"?"YENİ":"NEW"}</span>`}<h3>${b.ad}</h3><div class="sub">${b.alt}</div><p>${t(b)}</p><span class="go"><i>→</i>${DIL==="tr"?"Modelleri gör":"See models"}</span></a>`);
+  document.getElementById("rail").innerHTML=MODELLER.map(m=>`<a class="pc" href="product.html?id=${m[0].toLowerCase()}-${m[1]}"><div class="ph"><img src="${m[2]}" alt="${m[0]} ${m[1]}" loading="lazy"><em>EN 812</em></div><div class="bd"><small>${m[0]}® · bump cap</small><h4>${m[0]} ${m[1]}</h4><p>${DIL==="tr"?m[3]:m[4]}</p></div></a>`).join("");
+  const s=SEKTOR[DIL];document.getElementById("mq").innerHTML=[...s,...s].map(x=>`<span>${x}</span><span>✦</span>`).join("");
+  banner("#hero");
+}
+function rail(d){const r=document.getElementById("rail");r.scrollBy({left:d*310,behavior:"smooth"})}
+ciz();dilKur(ciz);burger();hdrScroll();yukari();reveal();sayac();popup("orta");
+</script>
+</body>
+</html>

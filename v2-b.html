@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Disi Safety — Tasarım B · Açık Katalog</title>
+<link rel="icon" href="https://disisafety.com/wp-content/uploads/2024/11/cropped-ds-32x32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Barlow+Condensed:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--red:#e3141b;--navy:#0d1b2e;--navy2:#1d3354;--bg:#f4f6f9;--card:#fff;--ink:#0d1b2e;--mut:#5d6b80;--line:#e3e8ef;--max:1320px;--r:22px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Barlow,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body.noscroll{overflow:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+h1,h2,h3{font-weight:800;letter-spacing:-.025em;line-height:1.04}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:50px;font-weight:700;font-size:15px;transition:.25s;cursor:pointer;border:0;font-family:inherit}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{background:var(--navy);transform:translateY(-2px)}
+.btn-ghost{background:#fff;color:var(--navy);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn-ghost:hover{box-shadow:inset 0 0 0 1.5px var(--navy)}
+.pill{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--red);background:#fde8e9;padding:7px 14px;border-radius:30px;letter-spacing:.02em}
+.pill:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red)}
+section{padding:100px 0}
+.sh{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:46px;flex-wrap:wrap}
+.sh h2{font-size:clamp(34px,4.4vw,56px);margin-top:14px}
+.sh p{max-width:440px;color:var(--mut)}
+
+/* HEADER */
+.hdr{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);transition:.3s}
+.hdr.scrolled{box-shadow:0 10px 30px -18px rgba(13,27,46,.35)}
+.hdr .wrap{display:flex;align-items:center;gap:24px;height:86px;transition:.3s}
+.hdr.scrolled .wrap{height:70px}
+.logo img{height:46px}
+.mnu{display:flex;gap:4px;margin:0 auto;background:var(--bg);padding:5px;border-radius:50px}
+.mnu a{display:flex;align-items:center;gap:7px;padding:10px 18px;border-radius:50px;font-weight:600;font-size:15px;color:var(--mut);transition:.2s}
+.mnu a svg{width:17px;height:17px}
+.mnu a:hover{background:#fff;color:var(--navy);box-shadow:0 4px 14px -6px rgba(13,27,46,.3)}
+.hr{display:flex;gap:10px;align-items:center}
+.bayi{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:50px;background:var(--navy);color:#fff;font-weight:700;font-size:14px;transition:.2s}
+.bayi:hover{background:var(--red)}
+.bayi svg{width:17px;height:17px}
+.dil{display:flex;background:var(--bg);border-radius:30px;padding:3px}
+.dil button{background:none;border:0;color:var(--mut);font:700 12px Barlow;padding:7px 10px;border-radius:30px;cursor:pointer}
+.dil button.on{background:#fff;color:var(--navy);box-shadow:0 2px 8px -2px rgba(0,0,0,.15)}
+.burger{display:none;background:none;border:0;width:44px;height:44px;color:var(--navy)}
+.mnav{position:fixed;inset:0;background:#fff;z-index:60;padding:90px 24px 30px;display:grid;grid-template-columns:1fr 1fr;gap:12px;align-content:start;transform:translateY(-100%);transition:.4s}
+.mnav.open{transform:none}
+.mnav a{background:var(--bg);border-radius:18px;padding:22px 16px;display:flex;flex-direction:column;gap:10px;font-weight:700;font-size:18px}
+.mnav a svg{width:30px;color:var(--red)}
+.mnav .x{position:absolute;top:22px;right:20px;background:none;border:0;font-size:40px;color:var(--navy)}
+
+/* HERO SLIDER — split */
+.hero{padding:26px 0 0}
+.hbox{position:relative;background:#fff;border-radius:32px;overflow:hidden;height:600px;box-shadow:0 30px 70px -40px rgba(13,27,46,.35)}
+.sl{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1.15fr;opacity:0;visibility:hidden;transition:opacity .9s,visibility .9s}
+.sl.on{opacity:1;visibility:visible}
+.sl-bg{grid-column:2;grid-row:1;background-size:cover;margin:14px 14px 14px 0;border-radius:24px;transform:scale(1.04);transition:transform 6s ease-out;clip-path:inset(0 0 0 100% round 24px);transition:clip-path 1s cubic-bezier(.7,0,.2,1),transform 6s ease-out}
+.sl.on .sl-bg{clip-path:inset(0 0 0 0 round 24px);transform:scale(1)}
+.sl-in{grid-column:1;grid-row:1;display:flex;align-items:center;padding:0 40px 80px 64px}
+.sl-txt>*{opacity:0;transform:translateX(-30px);transition:.7s cubic-bezier(.2,.7,.2,1)}
+.sl.on .sl-txt>*{opacity:1;transform:none}
+.sl.on .sl-txt>*:nth-child(2){transition-delay:.25s}.sl.on .sl-txt>*:nth-child(3){transition-delay:.4s}.sl.on .sl-txt>*:nth-child(4){transition-delay:.55s}
+.sl-tag{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--red);background:#fde8e9;padding:7px 14px;border-radius:30px}
+.sl h1{font-size:clamp(38px,4.6vw,64px);margin:20px 0 18px}
+.sl h1 em{font-style:normal;color:var(--red);position:relative;white-space:nowrap}
+.sl h1 em:after{content:"";position:absolute;left:0;right:0;bottom:.04em;height:.16em;background:rgba(227,20,27,.15);z-index:-1;border-radius:4px}
+.sl p{color:var(--mut);font-size:18px;max-width:460px}
+.sl-cta{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
+.sl-nav{position:absolute;left:64px;bottom:34px;display:flex;gap:10px;z-index:4}
+.sl-nav button{width:46px;height:46px;border-radius:14px;border:0;background:var(--bg);cursor:pointer;position:relative;overflow:hidden;font:700 14px Barlow;color:var(--mut);transition:.3s}
+.sl-nav button i{position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--red);transform:scaleX(0);transform-origin:left}
+.sl-nav button.on{background:var(--navy);color:#fff;width:120px}
+.sl-nav button.on i{animation:prog var(--dur) linear forwards}
+.sl-nav button b{display:none}
+.sl-nav button.on span{display:none}.sl-nav button.on b{display:inline;font-size:13px;font-weight:600}
+@keyframes prog{to{transform:scaleX(1)}}
+.sl-arr{position:absolute;right:30px;bottom:30px;display:flex;gap:8px;z-index:4}
+.sl-arr button{width:52px;height:52px;border-radius:50%;border:0;background:#fff;color:var(--navy);font-size:20px;cursor:pointer;box-shadow:0 8px 20px -6px rgba(0,0,0,.35);transition:.2s}
+.sl-arr button:hover{background:var(--red);color:#fff}
+.sl-count{display:none}
+
+/* KATEGORİ DÜĞMELERİ */
+.qnav{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:22px}
+.qnav a{background:#fff;border-radius:var(--r);padding:22px;display:flex;align-items:center;gap:14px;border:1px solid var(--line);transition:.3s;position:relative;overflow:hidden}
+.qnav a:before{content:"";position:absolute;inset:0;background:var(--navy);transform:translateY(101%);transition:.35s cubic-bezier(.2,.7,.2,1);z-index:0}
+.qnav a>*{position:relative;z-index:1}
+.qnav a .i{width:52px;height:52px;border-radius:16px;background:#fde8e9;color:var(--red);display:grid;place-items:center;flex-shrink:0;transition:.3s}
+.qnav a .i svg{width:26px}
+.qnav a b{font-size:18px;display:block}
+.qnav a small{color:var(--mut);font-size:13px;transition:.3s}
+.qnav a:hover:before{transform:none}
+.qnav a:hover{color:#fff}.qnav a:hover small{color:#a9b6c9}.qnav a:hover .i{background:var(--red);color:#fff}
+
+/* MARKALAR */
+.bgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.br{background:#fff;border-radius:28px;padding:36px 34px 0;position:relative;overflow:hidden;border:1px solid var(--line);transition:.4s;display:flex;flex-direction:column;min-height:540px}
+.br:hover{transform:translateY(-8px);box-shadow:0 40px 60px -40px rgba(13,27,46,.45)}
+.br .mk{display:flex;justify-content:space-between;align-items:start}
+.br h3{font:900 clamp(54px,5.4vw,78px)/.9 "Barlow Condensed";text-transform:uppercase;letter-spacing:-.01em;color:var(--navy)}
+.br .sub{display:block;font-size:13px;font-weight:700;letter-spacing:.38em;text-transform:uppercase;color:var(--red);margin-top:8px}
+.br .new{background:var(--red);color:#fff;font-size:11px;font-weight:800;letter-spacing:.1em;padding:5px 10px;border-radius:30px}
+.br p{color:var(--mut);margin-top:14px;max-width:280px}
+.br .vis{margin-top:auto;position:relative;height:280px;display:grid;place-items:end center}
+.br .vis:before{content:"";position:absolute;width:300px;height:300px;border-radius:50%;bottom:-120px;background:var(--c,#fde8e9);transition:.5s}
+.br:hover .vis:before{transform:scale(1.15)}
+.br .vis img{position:relative;width:240px;height:240px;object-fit:cover;border-radius:50%;border:8px solid #fff;margin-bottom:-30px;transition:.6s;box-shadow:0 20px 40px -20px rgba(0,0,0,.4)}
+.br:hover .vis img{transform:rotate(-8deg) scale(1.05)}
+.br .go{position:absolute;right:26px;bottom:26px;width:54px;height:54px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:20px;z-index:2;transition:.3s}
+.br:hover .go{background:var(--red);transform:rotate(-45deg)}
+
+/* BENTO */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:18px}
+.bx{background:#fff;border-radius:var(--r);padding:28px;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative}
+.bx b{font:900 58px/1 "Barlow Condensed";color:var(--navy)}
+.bx span{color:var(--mut);font-weight:500}
+.bx.big{grid-column:span 2;grid-row:span 2;padding:0;border:0}
+.bx.big img{width:100%;height:100%;object-fit:cover}
+.bx.big .cap{position:absolute;left:0;right:0;bottom:0;padding:30px;background:linear-gradient(0deg,rgba(13,27,46,.9),transparent);color:#fff}
+.bx.big .cap h3{font-size:32px}
+.bx.red{background:var(--red);border:0}.bx.red b,.bx.red span{color:#fff}
+.bx.navy{background:var(--navy);border:0}.bx.navy b,.bx.navy span{color:#fff}
+.bx .ico{width:44px;height:44px;color:var(--red)}
+
+/* MODELLER grid + filtre */
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chips button{border:1.5px solid var(--line);background:#fff;padding:9px 18px;border-radius:30px;font:600 14px Barlow;color:var(--mut);cursor:pointer;transition:.2s}
+.chips button.on,.chips button:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:30px}
+.pc{background:#fff;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);transition:.35s}
+.pc:hover{transform:translateY(-6px);box-shadow:0 30px 50px -30px rgba(13,27,46,.4)}
+.pc .ph{aspect-ratio:1;overflow:hidden;position:relative}
+.pc .ph img{width:100%;height:100%;object-fit:cover;transition:.6s}
+.pc:hover .ph img{transform:scale(1.06)}
+.pc .ph em{position:absolute;top:12px;left:12px;background:#fff;font-style:normal;font-size:11px;font-weight:800;padding:5px 10px;border-radius:30px}
+.pc .bd{padding:18px 20px;display:flex;justify-content:space-between;align-items:center}
+.pc small{color:var(--red);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.pc h4{font-size:20px}
+.pc .q{width:40px;height:40px;border-radius:50%;background:var(--bg);display:grid;place-items:center;transition:.2s}
+.pc:hover .q{background:var(--red);color:#fff}
+.pc.hide{display:none}
+
+/* ÜRETİM timeline */
+.prod{background:var(--navy);color:#fff;border-radius:40px;margin:0 16px}
+.prod .sh p{color:#a9b6c9}
+.tl{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;position:relative}
+.tl:before{content:"";position:absolute;top:27px;left:5%;right:5%;height:2px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.25) 0 8px,transparent 8px 16px)}
+.tl div{position:relative}
+.tl i{width:56px;height:56px;border-radius:50%;background:var(--red);display:grid;place-items:center;font:800 18px Barlow;font-style:normal;margin-bottom:20px;box-shadow:0 0 0 8px var(--navy)}
+.tl h4{font-size:20px;margin-bottom:6px}
+.tl p{color:#a9b6c9;font-size:15px}
+.pimgs{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:300px;gap:16px;margin-top:50px}
+.pimgs img{width:100%;height:100%;object-fit:cover;border-radius:20px}
+
+/* GRUPLAR */
+.groups{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.gr{background:#fff;border-radius:28px;overflow:hidden;border:1px solid var(--line);transition:.35s}
+.gr:hover{transform:translateY(-6px);box-shadow:0 30px 50px -30px rgba(13,27,46,.4)}
+.gr .gi{height:230px;background-size:cover;background-position:center}
+.gr .gb{padding:26px}
+.gr h3{font-size:30px}
+.gr p{color:var(--mut);margin:8px 0 16px}
+.gr .ic{display:flex;gap:8px;flex-wrap:wrap}
+.gr .ic span{width:46px;height:46px;border-radius:14px;background:var(--bg);display:grid;place-items:center}
+.gr .ic img{width:26px;height:26px;opacity:.75}
+
+/* BELGELER list */
+.dl{background:#fff;border-radius:28px;border:1px solid var(--line);overflow:hidden}
+.dr{display:grid;grid-template-columns:64px 1fr auto auto;gap:20px;align-items:center;padding:22px 30px;border-bottom:1px solid var(--line);transition:.2s}
+.dr:last-child{border-bottom:0}
+.dr:hover{background:#fafbfd}
+.dr .di{width:52px;height:52px;border-radius:14px;background:#fde8e9;color:var(--red);display:grid;place-items:center}
+.dr .di svg{width:26px}
+.dr h4{font-size:18px}.dr p{color:var(--mut);font-size:14px}
+.dr .tg{font-size:12px;font-weight:700;color:var(--mut);background:var(--bg);padding:5px 10px;border-radius:8px}
+.dr a{display:flex;gap:8px;align-items:center;font-weight:700;color:var(--navy);padding:10px 18px;border-radius:30px;border:1.5px solid var(--line)}
+.dr a:hover{background:var(--red);border-color:var(--red);color:#fff}
+
+/* BAYİ + TEKLİF */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.dbox{border-radius:32px;padding:50px;position:relative;overflow:hidden}
+.dbox.n{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff}
+.dbox.n p{color:#a9b6c9}
+.dbox.w{background:#fff;border:1px solid var(--line)}
+.dbox h2{font-size:clamp(32px,3.6vw,46px);margin:14px 0 12px}
+.dbox ul{list-style:none;display:grid;gap:10px;margin:22px 0 30px}
+.dbox li{display:flex;gap:10px;align-items:center}
+.dbox li:before{content:"✓";color:var(--red);font-weight:800}
+.dbox.n .deco{position:absolute;right:-60px;bottom:-60px;width:260px;opacity:.07;filter:invert(1)}
+form{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+form .f{grid-column:1/-1}
+input,select,textarea{width:100%;background:var(--bg);border:1.5px solid transparent;border-radius:14px;padding:14px 16px;color:var(--ink);font:15px Barlow}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--navy);background:#fff}
+textarea{min-height:90px;resize:vertical}
+
+footer{background:#fff;margin-top:100px;padding:70px 0 30px;border-top:1px solid var(--line);font-size:14px;color:var(--mut)}
+.fg{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+footer h5{font-size:15px;color:var(--navy);margin-bottom:14px}
+footer li{list-style:none;margin-bottom:8px}footer a:hover{color:var(--red)}
+.fb{border-top:1px solid var(--line);margin-top:46px;padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+/* BACK TO TOP — hap biçimli */
+.totop{position:fixed;right:24px;bottom:96px;z-index:70;height:50px;padding:0 18px 0 14px;border-radius:50px;background:var(--navy);color:#fff;border:0;cursor:pointer;display:flex;align-items:center;gap:8px;font:700 14px Barlow;opacity:0;transform:translateY(20px);transition:.35s;box-shadow:0 14px 30px -10px rgba(13,27,46,.6);overflow:hidden}
+.totop.show{opacity:1;transform:none}
+.totop .ring{display:none}
+.totop .ar{width:18px;height:18px;transition:.3s}
+.totop:hover{background:var(--red)}.totop:hover .ar{transform:translateY(-3px)}
+.totop:after{content:"";position:absolute;left:0;bottom:0;height:3px;width:var(--sp,0%);background:var(--red)}
+.wa{position:fixed;right:24px;bottom:26px;z-index:70;width:56px;height:56px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 10px 30px rgba(37,211,102,.4)}
+.wa svg{width:30px;fill:#fff}
+
+/* POPUP — köşeden kayan kart */
+.pop{position:fixed;left:24px;bottom:24px;z-index:100;max-width:420px;width:calc(100% - 48px);transform:translateY(130%);transition:.6s cubic-bezier(.2,.8,.2,1)}
+.pop.open{transform:none}
+.pop-box{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 40px 80px -30px rgba(13,27,46,.55);border:1px solid var(--line);position:relative}
+.pop-img{height:150px;background-size:cover;background-position:center}
+.pop-body{padding:22px 24px 24px}
+.pop-tag{display:inline-flex;font-size:12px;font-weight:800;color:var(--red);background:#fde8e9;padding:5px 12px;border-radius:30px}
+.pop h3{font-size:24px;margin:10px 0 6px}
+.pop p{color:var(--mut);font-size:15px;margin-bottom:16px}
+.pop .btn{padding:12px 20px}
+.pop-x{position:absolute;top:10px;right:10px;width:36px;height:36px;border-radius:50%;background:#fff;border:0;font-size:22px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.pop-x:hover{background:var(--red);color:#fff}
+
+.rv{opacity:0;transform:translateY(34px);transition:.9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+@media(max-width:1180px){.mnu{display:none}.burger{display:block}.hr .bayi span{display:none}.hdr .wrap{justify-content:space-between}}
+@media(max-width:1000px){
+  .qnav{grid-template-columns:repeat(3,1fr)}.bento{grid-template-columns:1fr 1fr}.pgrid{grid-template-columns:repeat(2,1fr)}
+  .bgrid,.groups,.duo{grid-template-columns:1fr}.br{min-height:460px}
+  .tl{grid-template-columns:1fr 1fr}.tl:before{display:none}
+}
+@media(max-width:760px){
+  .hbox{height:auto}.sl{position:relative;grid-template-columns:1fr;display:none}.sl.on{display:grid}
+  .sl-bg{grid-column:1;grid-row:1;height:260px;margin:10px 10px 0;border-radius:20px}
+  .sl-in{grid-row:2;padding:26px 22px 90px}
+  .sl-nav{left:22px;bottom:24px}.sl-nav button{width:36px;height:36px}.sl-nav button.on{width:60px}.sl-nav button.on b{display:none}
+  .sl-arr{display:none}.sl p{font-size:16px}
+  .qnav{grid-template-columns:1fr 1fr}.qnav a{padding:16px;gap:10px}.qnav a small{display:none}
+  .bento{grid-auto-rows:160px}.bx b{font-size:44px}
+  .pimgs{grid-template-columns:1fr;grid-template-rows:200px}.pimgs img{height:200px}.pimgs img:not(:first-child){display:none}
+  .dr{grid-template-columns:52px 1fr;padding:18px}.dr .tg{display:none}.dr a{grid-column:1/-1;justify-content:center}
+  .dbox{padding:30px 22px}form{grid-template-columns:1fr}
+  .fg{grid-template-columns:1fr 1fr}
+  section{padding:70px 0}.prod{margin:0;border-radius:28px}
+  .logo img{height:38px}.dil{display:none}
+  .pop{left:12px;bottom:12px;width:calc(100% - 24px)}
+  .totop{right:16px;bottom:88px;padding:0 14px}.totop span{display:none}.wa{right:16px;bottom:20px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="hdr"><div class="wrap">
+  <a href="v2-b.html" class="logo"><img src="img/disidafety-logo-11.png" alt="Disi Safety"></a>
+  <nav class="mnu" id="menu"></nav>
+  <div class="hr">
+    <div class="dil"><button data-l="tr">TR</button><button data-l="en">EN</button></div>
+    <a class="bayi" href="bayi.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span data-en="Dealer Login">Bayi Girişi</span></a>
+    <button class="burger" aria-label="Menü"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  </div>
+</div></header>
+<div class="mnav"><button class="x" onclick="this.parentNode.classList.remove('open');document.body.classList.remove('noscroll')">×</button><div id="menuM" style="display:contents"></div></div>
+
+<!-- KAYAN BANNER + HIZLI DÜĞMELER -->
+<section class="hero" style="padding-bottom:0"><div class="wrap">
+  <div class="hbox" id="hero">
+    <div class="sl-track"></div>
+    <div class="sl-nav"></div>
+    <div class="sl-arr"><button class="sl-prev" aria-label="Önceki">←</button><div class="sl-count"></div><button class="sl-next" aria-label="Sonraki">→</button></div>
+  </div>
+  <nav class="qnav" id="qnav"></nav>
+</div></section>
+
+<!-- MARKALAR -->
+<section id="markalar"><div class="wrap">
+  <div class="sh rv"><div><span class="pill" data-en="Our brands">Markalarımız</span><h2 data-en="Three lines, one standard: EN 812">Üç seri, tek standart: EN 812</h2></div><p data-en="Every line is designed, sewn and assembled in our own factory.">Her seri kendi fabrikamızda tasarlanır, dikilir ve monte edilir.</p></div>
+  <div class="bgrid" id="brands"></div>
+</div></section>
+
+<!-- BENTO -->
+<section style="padding-top:0"><div class="wrap">
+  <div class="bento">
+    <div class="bx big rv"><img src="gen/hero.webp" alt="Bump cap kullanan çalışan" loading="lazy"><div class="cap"><span class="pill" style="background:#fff" data-en="Manufacturer">Üretici</span><h3 style="margin-top:10px" data-en="A manufacturer, not a reseller">Aracı değil, üreticiyiz</h3></div></div>
+    <div class="bx red rv"><b><span data-n="40">40</span>+</b><span data-en="years of experience">yıllık tecrübe</span></div>
+    <div class="bx rv"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><span><b style="font-size:30px;display:block">EN 812</b><span data-en="certified">sertifikalı</span></span></div>
+    <div class="bx rv"><b><span data-n="50000">50.000</span>+</b><span data-en="caps per month">aylık şapka</span></div>
+    <div class="bx navy rv"><b><span data-n="250">250</span></b><span data-en="pcs minimum order">adetten başlayan sipariş</span></div>
+  </div>
+</div></section>
+
+<!-- MODELLER -->
+<section id="modeller" style="padding-top:0"><div class="wrap">
+  <div class="sh rv"><div><span class="pill" data-en="Catalog">Katalog</span><h2 data-en="Popular models">Öne çıkan modeller</h2></div>
+    <div class="chips" id="chips"><button class="on" data-f="all" data-en="All">Tümü</button><button data-f="Shelter">Shelter</button><button data-f="Lymra">Lymra</button><button data-f="Houcap">Houcap</button></div></div>
+  <div class="pgrid" id="pgrid"></div>
+</div></section>
+
+<!-- ÜRETİM -->
+<section class="prod" id="uretim"><div class="wrap">
+  <div class="sh rv"><div><span class="pill" style="background:rgba(255,255,255,.1);color:#fff" data-en="Production">Üretim</span><h2 data-en="From fabric to finished cap">Kumaştan bitmiş şapkaya</h2></div><p data-en="1,000 m² facility in Istanbul — every step except fabric supply is in-house.">İstanbul'da 1.000 m² tesis — kumaş tedariki dışındaki her adım bizde.</p></div>
+  <div class="tl">
+    <div class="rv"><i>1</i><h4 data-en="Design">Tasarım</h4><p data-en="Model, color and logo placement.">Model, renk ve logo yerleşimi.</p></div>
+    <div class="rv"><i>2</i><h4 data-en="Cutting">Kesim</h4><p data-en="Precise panel cutting.">Hassas panel kesimi.</p></div>
+    <div class="rv"><i>3</i><h4 data-en="Embroidery">Nakış</h4><p data-en="Logo embroidered in-house.">Logo kendi makinelerimizde.</p></div>
+    <div class="rv"><i>4</i><h4 data-en="Assembly">Montaj</h4><p data-en="ABS shell + EVA absorber.">ABS kabuk + EVA darbe emici.</p></div>
+    <div class="rv"><i>5</i><h4 data-en="Quality control">Kalite kontrol</h4><p data-en="EN 812 batch checks.">EN 812 parti kontrolü.</p></div>
+  </div>
+  <div class="pimgs rv"><img src="gen/factory.webp" alt="Üretim hattı" loading="lazy"><img src="img/wa-20.08.57-1.jpeg" alt="ABS iç kabuk" loading="lazy"><img src="img/wa-20.08.58-1.jpeg" alt="Şapka içi" loading="lazy"></div>
+</div></section>
+
+<!-- KKD / TEKSTİL / PROMOSYON -->
+<section id="kkd"><div class="wrap">
+  <div class="sh rv"><div><span class="pill" data-en="Product groups">Ürün grupları</span><h2 data-en="PPE, textile & promotional">KKD, tekstil ve promosyon</h2></div><p data-en="Everything your team wears — from one supplier.">Ekibinizin giydiği her şey — tek tedarikçiden.</p></div>
+  <div class="groups">
+    <a class="gr rv" href="#kkd"><div class="gi" style="background-image:url(img/slider4.webp)"></div><div class="gb"><h3 data-en="PPE">KKD</h3><p data-en="Helmets, eye and ear protection, gloves, footwear.">Baret, göz-kulak koruma, eldiven, iş ayakkabısı.</p><div class="ic"><span><img src="img/head.png" alt=""></span><span><img src="img/eye-and-face-1.png" alt=""></span><span><img src="img/footwear.png" alt=""></span><span><img src="img/body-1.png" alt=""></span></div></div></a>
+    <a class="gr rv" id="tekstil" href="#tekstil"><div class="gi" style="background-image:url(img/slider2.jpg);background-position:center 30%"></div><div class="gb"><h3 data-en="Textile">Tekstil</h3><p data-en="Polos, sweatshirts, jackets, workwear.">Polo, sweatshirt, mont, iş kıyafeti.</p><div class="ic"><span><img src="img/polo-t-shirt.png" alt=""></span><span><img src="img/sweatshirt.png" alt=""></span><span><img src="img/jacket.png" alt=""></span><span><img src="img/workwear.png" alt=""></span></div></div></a>
+    <a class="gr rv" id="promosyon" href="#promosyon"><div class="gi" style="background-image:url(img/slider1.jpg)"></div><div class="gb"><h3 data-en="Promotional">Promosyon</h3><p data-en="Caps, bags and giveaways with your logo.">Logolu şapka, çanta ve hediyelikler.</p><div class="ic"><span><img src="img/hat.png" alt=""></span><span><img src="img/bag.png" alt=""></span><span><img src="img/polo-t-shirt.png" alt=""></span></div></div></a>
+  </div>
+</div></section>
+
+<!-- BELGELER -->
+<section id="belgeler" style="padding-top:0"><div class="wrap">
+  <div class="sh rv"><div><span class="pill" data-en="Downloads">İndirmeler</span><h2 data-en="Documents">Belgeler</h2></div><p data-en="Certificates and technical files — always the current version.">Sertifika ve teknik dosyalar — her zaman güncel sürüm.</p></div>
+  <div class="dl rv">
+    <div class="dr"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><div><h4 data-en="EN 812 Certificate">EN 812 Sertifikası</h4><p data-en="EU type-examination certificate">AB tip inceleme sertifikası</p></div><span class="tg">PDF · 2026</span><a href="#" data-en="Download ↓">İndir ↓</a></div>
+    <div class="dr"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h8M9 17h6"/></svg></span><div><h4 data-en="EU Declaration of Conformity">AB Uygunluk Beyanı</h4><p>Declaration of Conformity (DoC)</p></div><span class="tg">PDF</span><a href="#" data-en="Download ↓">İndir ↓</a></div>
+    <div class="dr"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 9v11"/></svg></span><div><h4 data-en="Technical Data Sheets">Teknik Föyler</h4><p data-en="Dimensions, materials, care">Ölçü, malzeme, bakım</p></div><span class="tg">PDF</span><a href="#" data-en="Download ↓">İndir ↓</a></div>
+    <div class="dr"><span class="di"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5c3-1 5-1 8 1 3-2 5-2 8-1v14c-3-1-5-1-8 1-3-2-5-2-8-1z"/><path d="M12 6v14"/></svg></span><div><h4 data-en="Product Catalog 2026">Ürün Kataloğu 2026</h4><p>Shelter · Lymra · Houcap</p></div><span class="tg">PDF</span><a href="#" data-en="Download ↓">İndir ↓</a></div>
+  </div>
+</div></section>
+
+<!-- BAYİ + TEKLİF -->
+<section id="teklif" style="padding-top:0"><div class="wrap duo">
+  <div class="dbox n rv"><img class="deco" src="img/hat.png" alt="">
+    <span class="pill" style="background:rgba(255,255,255,.1);color:#fff" data-en="Dealers">Bayiler</span>
+    <h2 data-en="Dealer Portal">Bayi Portalı</h2>
+    <p data-en="Prices, stock, orders and marketing files — after login.">Fiyat, stok, sipariş ve pazarlama dosyaları — giriş sonrası.</p>
+    <ul><li data-en="Dealer price list">Bayi fiyat listesi</li><li data-en="Live stock status">Anlık stok durumu</li><li data-en="Order & shipment tracking">Sipariş & kargo takibi</li><li data-en="Photos & catalogs">Görsel & katalog arşivi</li></ul>
+    <a class="btn btn-red" href="bayi.html" data-en="Dealer Login →">Bayi Girişi →</a>
+  </div>
+  <div class="dbox w rv">
+    <span class="pill" data-en="Quote">Teklif</span>
+    <h2 data-en="Request a quote">Teklif isteyin</h2>
+    <p style="color:var(--mut)" data-en="We reply within 24 hours.">24 saat içinde dönüş yapıyoruz.</p>
+    <form onsubmit="event.preventDefault();this.innerHTML='<p class=f style=font-size:18px>✓ Talebiniz alındı (demo).</p>'">
+      <input placeholder="Ad Soyad" data-en-ph="Full name" required><input placeholder="Firma" data-en-ph="Company">
+      <input type="email" placeholder="E-posta" data-en-ph="Email" required><input placeholder="Ülke" data-en-ph="Country">
+      <select><option>Shelter</option><option>Lymra</option><option>Houcap</option><option>KKD / Tekstil</option></select>
+      <select><option>250–500</option><option>500–1.000</option><option>1.000–5.000</option><option>5.000+</option></select>
+      <textarea class="f" placeholder="Mesajınız" data-en-ph="Your message"></textarea>
+      <button class="btn btn-red f" style="justify-content:center" data-en="Send">Gönder</button>
+    </form>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="fg">
+    <div><img src="img/disidafety-logo-11.png" alt="Disi Safety" style="height:48px"><p style="margin-top:14px;max-width:300px" data-en="EN 812 bump cap manufacturer and corporate textile producer from Istanbul, since 1986.">1986'dan beri İstanbul'da EN 812 darbe emici şapka ve kurumsal tekstil üreticisi.</p></div>
+    <div><h5 data-en="Brands">Markalar</h5><ul><li><a href="category.html?brand=shelter">Shelter®</a></li><li><a href="category.html?brand=lymra">Lymra®</a></li><li><a href="#markalar">Houcap</a></li></ul></div>
+    <div><h5 data-en="Menu">Menü</h5><ul id="menuF"></ul></div>
+    <div><h5 data-en="Contact">İletişim</h5><ul><li>Üsküdar / İstanbul</li><li><a href="tel:+902163084432">+90 216 308 44 32</a></li><li><a href="mailto:info@disisafety.com">info@disisafety.com</a></li><li><a href="bayi.html" data-en="Dealer Login">Bayi Girişi</a></li></ul></div>
+  </div>
+  <div class="fb"><span>© 2026 Disi Safety</span><span>EN 812 · Shelter® · Lymra® · Houcap</span></div>
+</div></footer>
+
+<a class="wa" href="https://wa.me/902163084432" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg></a>
+
+<script src="js/v2.js"></script>
+<script>
+const ACIK={menu:{tr:["Kişisel koruyucu","Kurumsal giyim","Logolu ürünler","Fabrikamız","Sertifika & PDF"],en:["Protective gear","Corporate wear","Branded items","Our factory","Certificates & PDF"]}};
+const RENK=["#fde8e9","#e3ebf7","#fdf1d8"];
+const MODELLER=[["Shelter","05","img/shelter-6.jpg"],["Shelter","07","img/shelter-8.jpg"],["Lymra","04","img/lymra-tek-kirmizi.jpg"],["Shelter","03","img/shelter-4.jpg"],["Lymra","03","img/lymra-tek-neon.jpg"],["Shelter","06","img/shelter-7.jpg"],["Shelter","04","img/shelter-5.jpg"],["Shelter","01","img/shelter-11.jpg"]];
+let FILTRE="all";
+function ciz(){
+  menuCiz("#menu",m=>`<a href="${m.link}">${svg(m.ikon)}${t(m)}</a>`);
+  menuCiz("#menuM",m=>`<a href="${m.link}">${svg(m.ikon)}${t(m)}</a>`);
+  menuCiz("#menuF",m=>`<li><a href="${m.link}">${t(m)}</a></li>`);
+  document.getElementById("qnav").innerHTML=AYAR.menu.map((m,i)=>`<a href="${m.link}"><span class="i">${svg(m.ikon)}</span><span><b>${t(m)}</b><small>${(ACIK.menu[DIL]||ACIK.menu.tr)[i]||""}</small></span></a>`).join("");
+  markaCiz("#brands",(b,i)=>`<a class="br rv in" href="${b.link}" style="--c:${RENK[i%3]}"><div class="mk"><div><h3>${b.ad}</h3><span class="sub">${b.alt}</span></div>${b.logo?"":`<span class="new">${DIL==="tr"?"YENİ":"NEW"}</span>`}</div><p>${t(b)}</p><div class="vis"><img src="${b.gorsel}" alt="${b.ad} bump cap" loading="lazy"></div><span class="go">→</span></a>`);
+  document.getElementById("pgrid").innerHTML=MODELLER.map(m=>`<a class="pc${FILTRE!=="all"&&FILTRE!==m[0]?" hide":""}" data-b="${m[0]}" href="product.html?id=${m[0].toLowerCase()}-${m[1]}"><div class="ph"><img src="${m[2]}" alt="${m[0]} ${m[1]}" loading="lazy"><em>EN 812</em></div><div class="bd"><div><small>${m[0]}®</small><h4>${m[0]} ${m[1]}</h4></div><span class="q">→</span></div></a>`).join("")+(FILTRE==="Houcap"?`<p style="grid-column:1/-1;color:var(--mut);padding:30px 0">${DIL==="tr"?"Houcap modelleri yakında eklenecek.":"Houcap models coming soon."}</p>`:"");
+  banner("#hero");
+}
+document.getElementById("chips").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;FILTRE=b.dataset.f;document.querySelectorAll("#chips button").forEach(x=>x.classList.toggle("on",x===b));ciz()});
+ciz();dilKur(ciz);burger();hdrScroll();yukari();reveal();sayac();popup("kose");
+/* hap düğmede alt çizgi ilerleme */
+addEventListener("scroll",()=>{const h=document.documentElement;document.querySelector(".totop")?.style.setProperty("--sp",(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+"%")},{passive:true});
+</script>
+</body>
+</html>
