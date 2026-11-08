@@ -47,7 +47,10 @@ label{font-size:13px;font-weight:700;color:var(--mut);display:block;margin-botto
 .box .btn{width:100%}
 .alt{margin-top:28px;padding-top:24px;border-top:1px solid var(--line);text-align:center;color:var(--mut);font-size:15px}
 .alt a{color:var(--navy);font-weight:700;border-bottom:2px solid var(--red)}
-.demo{margin-top:18px;font-size:13px;color:var(--mut);background:#fff;border:1px dashed var(--line);padding:10px 14px;border-radius:10px}
+.hata{display:none;margin-top:14px;background:#fde8e9;color:var(--red);font-weight:600;font-size:14px;padding:10px 14px;border-radius:10px}.hata.on{display:block}
+.demo code{background:var(--bg);padding:2px 7px;border-radius:6px;font-weight:700;color:var(--navy)}
+.doldur{margin-top:10px;background:var(--navy);color:#fff;border:0;border-radius:8px;padding:8px 14px;font:700 13px Barlow;cursor:pointer}.doldur:hover{background:var(--red)}
+.demo{line-height:1.9;margin-top:18px;font-size:13px;color:var(--mut);background:#fff;border:1px dashed var(--line);padding:10px 14px;border-radius:10px}
 
 /* PANEL */
 .panel{display:none;min-height:100vh;grid-template-columns:250px 1fr}
@@ -139,12 +142,13 @@ td img{width:42px;height:42px;border-radius:10px;object-fit:cover;display:inline
     <form class="box" onsubmit="event.preventDefault();girisYap()">
       <h2 data-en="Dealer Login">Bayi Girişi</h2>
       <p data-en="Sign in with your dealer account.">Bayi hesabınızla giriş yapın.</p>
-      <div class="fld"><label data-en="Email or dealer code">E-posta veya bayi kodu</label><input placeholder="ornek@firma.com" required></div>
-      <div class="fld"><label data-en="Password">Şifre</label><input type="password" placeholder="••••••••" required></div>
+      <div class="fld"><label data-en="Email or dealer code">E-posta veya bayi kodu</label><input id="kul" placeholder="ornek@firma.com" autocomplete="username" required></div>
+      <div class="fld"><label data-en="Password">Şifre</label><input id="sif" type="password" placeholder="••••••••" autocomplete="current-password" required></div>
       <div class="row"><label><input type="checkbox" style="width:auto"> <span data-en="Remember me">Beni hatırla</span></label><a href="#" data-en="Forgot password?">Şifremi unuttum</a></div>
       <button class="btn btn-red" data-en="Sign in →">Giriş Yap →</button>
       <div class="alt"><span data-en="Not a dealer yet?">Henüz bayimiz değil misiniz?</span> <a href="v2-a.html#teklif" data-en="Apply for dealership">Bayilik başvurusu yapın</a></div>
-      <div class="demo" data-en="Demo: type anything to see the dealer panel.">Demo: herhangi bir bilgiyle giriş yapıp bayi panelini görebilirsiniz.</div>
+      <div class="hata" id="hata" data-en="Email/dealer code or password is wrong.">E-posta/bayi kodu veya şifre hatalı.</div>
+      <div class="demo"><b data-en="Demo dealer account">Demo bayi hesabı</b><br><span data-en="Email:">E-posta:</span> <code>demo@disisafety.com</code> <span data-en="or code">veya kod</span> <code>BAYI-1001</code><br><span data-en="Password:">Şifre:</span> <code>Disi2026</code><br><button type="button" class="doldur" onclick="document.getElementById('kul').value='demo@disisafety.com';document.getElementById('sif').value='Disi2026'" data-en="Fill demo info">Demo bilgileri doldur</button></div>
     </form>
   </div>
 </div>
@@ -163,7 +167,7 @@ td img{width:42px;height:42px;border-radius:10px;object-fit:cover;display:inline
   <div>
     <div class="mtop"><img src="img/footer-logo-2.png" alt="Disi Safety"><button onclick="cikis()" data-en="Log out">Çıkış</button></div>
     <main>
-      <div class="mh"><div><p data-en="Welcome,">Hoş geldiniz,</p><h1>Örnek İSG Ltd. Şti.</h1></div><div class="r"><div class="dil"><button data-l="tr">TR</button><button data-l="en">EN</button></div><a class="btn btn-line" href="v2-a.html" data-en="← Website">← Siteye dön</a></div></div>
+      <div class="mh"><div><p data-en="Welcome,">Hoş geldiniz,</p><h1>Demo İSG Ltd. Şti. <small style="font-size:14px;color:var(--mut);font-weight:600">· BAYI-1001</small></h1></div><div class="r"><div class="dil"><button data-l="tr">TR</button><button data-l="en">EN</button></div><a class="btn btn-line" href="v2-a.html" data-en="← Website">← Siteye dön</a></div></div>
 
       <div class="ann"><div><b data-en="📢 2026 price list published">📢 2026 fiyat listesi yayında</b><p data-en="New Houcap line is open for pre-orders until 30 November.">Yeni Houcap serisi 30 Kasım'a kadar ön siparişe açık.</p></div><a class="btn" href="#fiyat" data-en="View">İncele</a></div>
 
@@ -201,16 +205,18 @@ td img{width:42px;height:42px;border-radius:10px;object-fit:cover;display:inline
 
 <script src="js/v2.js"></script>
 <script>
-const LISTE=[["Shelter 05","img/shelter-6.jpg","ok"],["Shelter 07","img/shelter-8.jpg","ok"],["Shelter 03","img/shelter-4.jpg","ok"],["Shelter 01","img/shelter-11.jpg","lo"],["Lymra 04","img/lymra-tek-kirmizi.jpg","ok"],["Lymra 03","img/lymra-tek-neon.jpg","lo"],["Lymra 05","img/lymra-7.jpg","ok"],["Houcap 01","img/shelter-7.jpg","no"]];
+const LISTE=[["Shelter 05","img/shelter-6.jpg","ok","185,00"],["Shelter 07","img/shelter-8.jpg","ok","210,00"],["Shelter 03","img/shelter-4.jpg","ok","195,00"],["Shelter 01","img/shelter-11.jpg","lo","215,00"],["Lymra 04","img/lymra-tek-kirmizi.jpg","ok","240,00"],["Lymra 03","img/lymra-tek-neon.jpg","lo","240,00"],["Lymra 05","img/lymra-7.jpg","ok","275,00"],["Houcap 01","img/shelter-7.jpg","no","—"]];
 const ST={ok:["Stokta","In stock"],lo:["Sınırlı","Limited"],no:["Ön sipariş","Pre-order"]};
 let sepet=0;
 function tablo(){
   const q=(document.getElementById("ara").value||"").toLowerCase();
-  document.getElementById("tb").innerHTML=LISTE.filter(r=>r[0].toLowerCase().includes(q)).map(r=>`<tr><td><img src="${r[1]}" alt="">${r[0]}</td><td><b>•••,••</b> <small style="color:var(--mut)">${DIL==="tr"?"(bayiye özel)":"(dealer only)"}</small></td><td><span class="st ${r[2]}">${ST[r[2]][DIL==="tr"?0:1]}</span></td><td><input class="qty" type="number" min="250" step="50" value="250"></td><td><button class="add" title="Sepete ekle" onclick="ekle()">+</button></td></tr>`).join("");
+  document.getElementById("tb").innerHTML=LISTE.filter(r=>r[0].toLowerCase().includes(q)).map(r=>`<tr><td><img src="${r[1]}" alt="">${r[0]}</td><td><b>${r[3]==="—"?"—":"₺"+r[3]}</b> <small style="color:var(--mut)">${DIL==="tr"?"(örnek)":"(sample)"}</small></td><td><span class="st ${r[2]}">${ST[r[2]][DIL==="tr"?0:1]}</span></td><td><input class="qty" type="number" min="250" step="50" value="250"></td><td><button class="add" title="Sepete ekle" onclick="ekle()">+</button></td></tr>`).join("");
 }
 function ekle(){sepet++;document.getElementById("cn").textContent=sepet;document.getElementById("cart").classList.add("show")}
 function alert0(e){e.preventDefault();document.getElementById("cart").innerHTML=DIL==="tr"?"✓ Sipariş talebiniz iletildi (demo).":"✓ Order request sent (demo).";setTimeout(()=>document.getElementById("cart").classList.remove("show"),2500)}
-function girisYap(){document.body.classList.add("in");try{sessionStorage.setItem("disi_bayi","1")}catch(e){}scrollTo(0,0)}
+function girisYap(){const k=document.getElementById("kul").value.trim().toLowerCase(),p=document.getElementById("sif").value;
+  if(!((k==="demo@disisafety.com"||k==="bayi-1001")&&p==="Disi2026")){document.getElementById("hata").classList.add("on");return}
+  document.getElementById("hata").classList.remove("on");document.body.classList.add("in");try{sessionStorage.setItem("disi_bayi","1")}catch(e){}scrollTo(0,0)}
 function cikis(){document.body.classList.remove("in");try{sessionStorage.removeItem("disi_bayi")}catch(e){}}
 try{if(sessionStorage.getItem("disi_bayi"))document.body.classList.add("in")}catch(e){}
 document.getElementById("ara").oninput=tablo;
