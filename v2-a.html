@@ -94,7 +94,7 @@ section{padding:110px 0;position:relative}
 /* BRANDS */
 .brands{padding:0;background:#03070e;border-bottom:1px solid var(--line)}
 .bgrid{display:grid;grid-template-columns:repeat(3,1fr)}
-.br{position:relative;padding:330px 40px 50px;border-right:1px solid var(--line);overflow:hidden;min-height:560px;display:flex;flex-direction:column;justify-content:flex-end;isolation:isolate;background:radial-gradient(circle at 50% 30%,rgba(227,20,27,.22),transparent 55%)}
+.br{position:relative;padding:340px 40px 54px;border-right:1px solid var(--line);overflow:hidden;min-height:560px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;isolation:isolate;background:radial-gradient(circle at 50% 30%,rgba(227,20,27,.22),transparent 55%)}
 .br:last-child{border-right:0}
 .br .im{position:absolute;top:56px;left:50%;width:250px;height:250px;margin-left:-125px;border-radius:50%;background:#fff;box-shadow:0 0 0 8px rgba(255,255,255,.06),0 0 0 16px rgba(227,20,27,.18),0 30px 60px -20px rgba(0,0,0,.8);overflow:hidden;transition:.6s cubic-bezier(.2,.7,.2,1);z-index:0}
 .br .im img{width:100%;height:100%;object-fit:contain;padding:14px;transition:.6s}
@@ -102,11 +102,12 @@ section{padding:110px 0;position:relative}
 .br:hover .im img{transform:rotate(-6deg)}
 .br .no{position:absolute;top:28px;left:40px;font:700 14px "Barlow Condensed";color:var(--red2);letter-spacing:.2em}
 .br .new{position:absolute;top:24px;right:30px;background:var(--red);color:#fff;font:700 12px "Barlow Condensed";letter-spacing:.15em;padding:5px 11px;border-radius:30px}
-.br h3{font-size:clamp(58px,6.4vw,92px);font-weight:900;color:#fff;letter-spacing:-.005em;transition:.3s}
+.br h3{font-size:clamp(52px,5.4vw,80px);font-weight:900;color:#fff;letter-spacing:-.005em;transition:.3s}
 .br:hover h3{color:var(--red2)}
-.br .sub{font:600 15px "Barlow Condensed";letter-spacing:.42em;text-transform:uppercase;color:var(--mut);margin-top:6px;display:flex;align-items:center;gap:12px}
+.br .sub{font:600 15px "Barlow Condensed";letter-spacing:.42em;text-transform:uppercase;color:var(--mut);margin-top:8px;display:flex;align-items:center;justify-content:center;gap:14px;padding-left:.42em}
+.br .sub:after{content:"";width:22px;height:2px;background:var(--red)}
 .br .sub:before{content:"";width:22px;height:2px;background:var(--red)}
-.br p{margin-top:16px;color:#b6c1d0;font-size:15px;max-width:300px}
+.br p{margin-top:14px;color:#b6c1d0;font-size:16px;max-width:300px}
 .br .go{margin-top:22px;font:700 14px "Barlow Condensed";letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
 .br .go i{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--red);display:grid;place-items:center;font-style:normal;transition:.3s}
 .br:hover .go i{background:var(--red);transform:translateX(6px)}
