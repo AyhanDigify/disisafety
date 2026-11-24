@@ -24,6 +24,7 @@ PRODUCTS.forEach(p=>{p.name=p.brand+" "+p.no;p.gallery=[p.img,...(p.brand==="She
 /* i18n */
 const I18N={tr:{}};
 let LANG="en";try{LANG=localStorage.getItem("disi_v2_dil")||localStorage.getItem("disi_lang")||(/v2-|bayi|houcap/.test(document.referrer)?"tr":"en")}catch(e){}
+{const q=new URLSearchParams(location.search).get("lang");if(q==="tr"||q==="en"){LANG=q;try{localStorage.setItem("disi_lang",q);localStorage.setItem("disi_v2_dil",q)}catch(e){}}}
 const T=(en,tr)=>LANG==="tr"?tr:en;
 function addTR(d){Object.assign(I18N.tr,d)}
 const EN_CACHE={};
