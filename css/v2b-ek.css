@@ -1,0 +1,86 @@
+/* Tasarım B — 24 Kas revizeleri (v2-b.html + v2-b-kisa.html ortak) */
+
+/* Üst şerit: iletişim + hızlı işlem düğmeleri */
+.tbar{background:#0a1524;color:#c9d2de;font-size:13px}
+.tbar .wrap{height:38px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.tbar .tl-ct{display:flex;gap:18px}
+.tbar .tl-ct a:hover{color:#fff}
+.hz{display:flex;gap:6px}
+.hz a{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:30px;font-weight:700;color:#fff;background:rgba(255,255,255,.08);transition:.2s}
+.hz a svg{width:15px;height:15px}
+.hz a:hover{background:var(--red)}
+
+/* Ana satır: Disi tekstil logosu + 4 logo düğmesi */
+.hdr .wrap.hrow{height:92px}
+.hdr.scrolled .wrap.hrow{height:80px}
+.logo img{height:68px;width:auto}
+.hdr.scrolled .logo img{height:58px}
+.brb{gap:10px;padding-left:22px}
+.brb a{height:64px;padding:6px 14px 5px;flex-direction:column;justify-content:center;gap:3px;min-width:118px}
+.brb img{height:34px;width:auto;max-width:120px;object-fit:contain}
+.brb small{font:800 10px/1 Barlow;letter-spacing:.16em;text-transform:uppercase;color:var(--red)}
+.brb a.hcap{padding-top:3px;padding-bottom:4px}.brb a.hcap img{height:44px}
+
+/* Markalar — 4 pencere */
+.bgrid{grid-template-columns:repeat(4,1fr);gap:18px}
+.br{padding:0 22px 22px;min-height:0}
+.br .vis{position:relative;right:auto;top:auto;bottom:auto;width:auto;height:170px;margin:0 -22px 16px;display:grid;place-items:center;overflow:hidden}
+.br .vis:before{width:260px;height:260px;right:auto;left:50%;top:50%;margin:-130px 0 0 -130px}
+.br .vis img{width:138px;height:138px}
+.br h3{font-size:clamp(32px,2.6vw,42px)}
+.br .sub{letter-spacing:.3em}
+.br p{margin:8px 0 14px}
+
+/* Kataloglar */
+.kgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.kc{background:#fff;border-radius:28px;border:1px solid var(--line);overflow:hidden;display:grid;grid-template-columns:200px 1fr;transition:.35s}
+.kc:hover{transform:translateY(-6px);box-shadow:0 30px 50px -30px rgba(0,0,0,.5)}
+.kc .kv{background:#eef1f5 center/cover no-repeat;min-height:240px}
+.kc .kb{padding:30px;display:flex;flex-direction:column;gap:10px}
+.kc h3{font-size:30px}
+.kc p{color:var(--mut)}
+.kc .btn{margin-top:auto;align-self:start;padding:12px 22px}
+.kc .tag{align-self:start;font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--red);background:#fde8e9;padding:5px 10px;border-radius:30px}
+
+/* Açılır pencere (banka / mail order) */
+.mdl{position:fixed;inset:0;z-index:120;background:rgba(10,21,36,.6);display:grid;place-items:center;padding:20px;opacity:0;visibility:hidden;transition:.3s}
+.mdl.open{opacity:1;visibility:visible}
+.mdl-box{background:#fff;border-radius:26px;max-width:640px;width:100%;max-height:90vh;overflow:auto;padding:34px 34px 30px;position:relative;transform:translateY(20px);transition:.3s}
+.mdl.open .mdl-box{transform:none}
+.mdl-box h3{font-size:30px;margin:10px 0 6px}
+.mdl-box>p{color:var(--mut)}
+.mdl-x{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:0;background:var(--bg);font-size:24px;cursor:pointer}
+.mdl-x:hover{background:var(--red);color:#fff}
+.ibn{display:grid;gap:10px;margin:20px 0 12px}
+.ibn div{border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center}
+.ibn b{font-size:16px}
+.ibn small{color:var(--mut);font-size:13px}
+.ibn code{grid-column:1;font:600 15px/1.3 ui-monospace,Menlo,monospace;color:var(--navy);word-break:break-all}
+.ibn .cur{grid-row:1;grid-column:2;font-weight:800;font-size:12px;background:var(--navy);color:#fff;padding:4px 9px;border-radius:8px}
+.ibn button{grid-column:2;grid-row:2/4;border:1.5px solid var(--line);background:#fff;border-radius:30px;padding:8px 14px;font:700 13px Barlow;cursor:pointer}
+.ibn button:hover{border-color:var(--red);color:var(--red)}
+.note{font-size:13px;background:#fff7e0;color:#7a5b00;border-radius:12px;padding:10px 14px;margin-top:6px}
+.steps{list-style:none;counter-reset:s;display:grid;gap:12px;margin:20px 0}
+.steps li{counter-increment:s;display:flex;gap:12px;align-items:flex-start}
+.steps li:before{content:counter(s);flex:0 0 30px;height:30px;border-radius:50%;background:var(--red);color:#fff;font-weight:800;display:grid;place-items:center}
+.mdl-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.mdl-cta .btn{padding:12px 20px}
+
+@media(max-width:1180px){.tbar .tl-ct{display:none}.tbar .wrap{justify-content:center}}
+@media(max-width:1000px){.bgrid{grid-template-columns:1fr 1fr}.kgrid{grid-template-columns:1fr}}
+@media(max-width:760px){
+  .hz a span{display:none}.hz a{padding:7px 10px}
+  .hdr .wrap.hrow{height:74px}.logo img{height:54px}
+  .bgrid{grid-template-columns:1fr}
+  .kc{grid-template-columns:1fr}.kc .kv{min-height:200px}
+  .mdl-box{padding:28px 20px 22px}
+}
+
+/* 7 kategori düğmesi tek sırada */
+.qnav{grid-template-columns:repeat(7,1fr);gap:10px}
+.qnav a{padding:16px 14px;gap:10px;flex-direction:column;align-items:flex-start}
+.qnav a .i{width:44px;height:44px;border-radius:13px}
+.qnav a .i svg{width:22px}
+.qnav a b{font-size:16px;line-height:1.2}
+@media(max-width:1180px){.qnav{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:760px){.qnav{grid-template-columns:1fr 1fr}}

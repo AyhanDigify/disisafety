@@ -10,6 +10,27 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/site.css"><link rel="stylesheet" href="css/pages.css">
+<style>
+.renkler a{width:76px;cursor:pointer}.renkler a img{width:72px;height:54px;object-fit:contain;padding:2px}
+.renkler .sw{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11.5px;color:var(--muted);width:44px;cursor:pointer;background:none;border:0;font-family:inherit}
+.renkler .sw i{width:36px;height:36px;border-radius:9px;border:2px solid var(--line);display:block}
+.renkler .sw.on i{outline:2px solid var(--red);outline-offset:2px}
+.siperbtn{display:flex;align-items:center;gap:14px;width:100%;padding:10px 14px 10px 10px;border:2px solid var(--line);border-radius:12px;background:#fff;cursor:pointer;font-family:inherit;text-align:left;transition:.2s}
+.siperbtn:hover{border-color:var(--navy)}
+.siperbtn img{width:64px;height:64px;object-fit:cover;object-position:top;border-radius:8px}
+.siperbtn b{display:block;color:var(--navy);font-size:16px}.siperbtn small{color:var(--red);font-weight:600}
+.kabuk{margin-top:50px}
+.kgal{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px}
+.kgal figure{margin:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;cursor:zoom-in}
+.kgal img,.kgal video{width:100%;aspect-ratio:4/3;object-fit:contain;background:#fff;display:block}
+.kgal figcaption{padding:10px 12px;font-size:13px;font-weight:600;color:var(--navy);border-top:1px solid var(--line)}
+.lbox{position:fixed;inset:0;z-index:200;background:rgba(10,21,36,.85);display:none;place-items:center;padding:30px}
+.lbox.open{display:grid}
+.lbox img{max-width:min(900px,100%);max-height:82vh;border-radius:14px;background:#fff}
+.lbox p{color:#fff;margin-top:10px;text-align:center}
+.lx{position:absolute;top:18px;right:22px;width:46px;height:46px;border-radius:50%;border:0;background:#fff;font-size:26px;cursor:pointer}
+@media(max-width:900px){.kgal{grid-template-columns:1fr 1fr}}
+</style>
 </head>
 <body class="pdp">
 <div id="hdr"></div>
@@ -37,13 +58,9 @@
         <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7"/></svg><span data-k="p_r3">Custom logo</span></span>
       </div>
 
-      <div class="opt"><label data-k="p_models">Other models in this line</label><div class="colorrow" id="siblings"></div></div>
+      <div class="opt"><label><span data-k="p_colors">Color options</span> <span id="renkSec" style="color:var(--red);text-transform:none;letter-spacing:0"></span></label><div class="colorrow renkler" id="renkler"></div></div>
       <div class="opt"><label data-k="m_peak">Peak length</label>
-        <div class="peaks">
-          <button data-p="3 cm">3 cm<small data-k="pk3">Micro</small></button>
-          <button data-p="5 cm" class="on">5 cm<small data-k="pk5">Short</small></button>
-          <button data-p="8 cm">8 cm<small data-k="pk8">Standard</small></button>
-        </div>
+        <button type="button" class="siperbtn" id="siperBtn"><img src="img/siper-boylari.jpg" alt=""><span><b data-k="pk_btn">Peak lengths: 3 · 5 · 8 cm</b><small data-k="pk_sub">See all peak sizes in one photo →</small></span></button>
       </div>
       <div class="opt"><label data-k="p_qty">Order quantity</label>
         <div class="qty">
@@ -98,6 +115,11 @@
     <p data-k="p_k4">Send us your quantity, peak length and logo file — we'll reply with a quotation and lead time within one business day.</p>
   </div></div>
 
+  <section class="kabuk" id="kabuk">
+    <div class="sec-head"><div><span class="eyebrow" data-k="kb_eye">More photos</span><h2 data-k="kb_t">Inner shell &amp; outer shell</h2></div></div>
+    <div class="kgal" id="kgal"></div>
+  </section>
+
   <div class="featrow">
     <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg><b data-k="f1">ABS shell</b><span data-k="f1p">Spreads impact</span></div>
     <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="9" width="16" height="6" rx="3"/></svg><b data-k="f2">EVA padding</b><span data-k="f2p">Absorbs bumps</span></div>
@@ -121,17 +143,14 @@
   </section>
 </div>
 
-<section class="related"><div class="wrap">
-  <div class="sec-head"><div><span class="eyebrow" data-k="r_eye">You may also need</span><h2 data-k="r_title">Related Models</h2></div><a href="category.html" class="link"><span data-k="m_all">View all models</span> →</a></div>
-  <div class="pgrid" id="related"></div>
-</div></section>
+<div class="lbox" id="lbox"><button class="lx" aria-label="Kapat">×</button><img alt=""><p></p></div>
 
 <div class="mbar"><a href="https://wa.me/902163084432" class="btn btn-wa">WhatsApp</a><a href="#quote" class="btn btn-red" data-k="cta_quote">Request a Quote</a></div>
 <div id="ftr"></div>
 <script src="js/shell.js"></script>
 <script>
 shell();
-addTR({p_360:"360° görünüm",p_r2:"Türkiye'de üretim",p_r3:"Özel logo",p_models:"Bu serideki diğer modeller",m_peak:"Siperlik uzunluğu",pk3:"Mikro",pk5:"Kısa",pk8:"Standart",p_qty:"Sipariş adedi",p_q1:"Min. sipariş",p_q2:"Özel renk",p_q3:"Toplu fiyat",p_q4:"Distribütör",
+addTR({p_360:"360° görünüm",p_r2:"Türkiye'de üretim",p_r3:"Özel logo",p_colors:"Renk seçenekleri",m_peak:"Siperlik uzunluğu",pk_btn:"Siper boyları: 3 · 5 · 8 cm",pk_sub:"Tüm siper boylarını tek fotoğrafta görün →",kb_eye:"Diğer fotoğraflar",kb_t:"İç kabuk ve dış kabuk",p_qty:"Sipariş adedi",p_q1:"Min. sipariş",p_q2:"Özel renk",p_q3:"Toplu fiyat",p_q4:"Distribütör",
 p_logo:"Logo uygulaması",p_l0:"Logosuz",p_l1:"Nakış",p_l2:"Baskı",p_l3:"Dokuma etiket",p_l4:"Private label",p_cta:"Bu Model İçin Teklif Al",p_d1:"Teknik föy",p_d2:"EN 812 sertifikası",cta_cat:"Katalog İndir",
 p_m1:"Fabrikadan direkt",p_m1p:"Aracısız",p_m2:"Hızlı termin",p_m2p:"Stok modelleri sorun",p_m3:"Dünya geneli",p_m3p:"İhracat gönderimi",
 p_t1:"Açıklama",p_t2:"Teknik özellikler",p_t3:"Sertifikalar",p_t4:"Ambalaj & sipariş",
@@ -143,15 +162,24 @@ cmp_t:"EN 812 ile EN 397 Farkı",cmp2:"Koruduğu risk",cmp2a:"Sabit cisimlere ç
 p_k1:"Minimum sipariş: 250 adet (standart modeller)",p_k2:"Özel renk / private label: 500 adetten",p_k3:"İç ambalaj ve ihracat kolisi — detay için sorun",p_k4:"Adet, siperlik ve logo dosyanızı gönderin — bir iş günü içinde teklif ve termin ile dönelim.",
 f1:"ABS kabuk",f1p:"Darbeyi dağıtır",f2:"EVA ped",f2p:"Çarpmayı emer",f3:"Havalandırma",f3p:"Gün boyu konfor",f4:"Reflektif seçenek",f4p:"Görünür olun",f5:"Ayarlanabilir",f5p:"Güvenli oturuş",
 q_eye:"Teklif alın",q_lead:"İhracat ekibimiz bir iş günü içinde dönüş yapar.",f_company:"Firma adı *",f_email:"E-posta *",f_country:"Ülke *",f_phone:"Telefon / WhatsApp",f_msg:"Mesaj (logo, teslimat ülkesi vb.)",f_note:"Bilgileriniz yalnızca talebinizi yanıtlamak için kullanılır.",f_send:"Teklif Gönder",f_ok:"Teşekkürler! Talebiniz alındı — en kısa sürede dönüş yapacağız.",
-r_eye:"Bunlara da göz atın",r_title:"Benzer Modeller",m_all:"Tüm modeller"});
+m_all:"Tüm modeller"});
 
+/* Katalogdaki renk fotoğrafları (SHELTER KATALOĞU s.4–7) — model no = katalog model no (firma teyit edecek) */
+const KATALOG={
+ "shelter-01":{renk:["01-01","01-02","01-03","01-04","01-05","01-06","01-07","01-08","01-09"],ic:[]},
+ "shelter-02":{renk:["02-01","02-02","02-03","02-04","02-05","02-06","02-07","02-08","02-11"],ic:[["img/katalog/shl-ic-02a.jpg","Inner shell","İç kabuk"],["img/katalog/shl-ic-02c.jpg","Inside view","İç görünüm"],["img/katalog/shl-ic-02b.jpg","Outer fabric (Oxford)","Dış kumaş (Oxford)"]]},
+ "shelter-03":{renk:["03-02","03-04","03-05","03-06","03-08","03-09","DS-001","DS-002","DS-003","DS-004"],ic:[["img/katalog/shl-ic-03a.jpg","Inner shell","İç kabuk"],["img/katalog/shl-ic-03b.jpg","Shell, top view","İç kabuk üstten"]]},
+ "shelter-04":{renk:["04-01","04-02","04-03","04-04","04-05","04-06","04-07","04-08","04-09"],ic:[["img/katalog/shl-ic-04a.jpg","Inside view","İç görünüm"],["img/katalog/shl-ic-04b.jpg","Inner shell","İç kabuk"]]},
+};
+/* Katalog renk kodları 01–11 */
+const RENK_KOD=[["01","#ffffff"],["02","#a19d8e"],["03","#2b2a28"],["04","#04364b"],["05","#3a3087"],["06","#ffcc00"],["07","#d4561f"],["08","#e31f26"],["09","#c6577a"],["10","#0a8fd6"],["11","#0a6b32"]];
 const P=PRODUCTS.find(p=>p.id===new URLSearchParams(location.search).get("id"))||PRODUCTS.find(p=>p.id==="shelter-05");
-const sel={peak:"5 cm",qty:"250 – 500",logo:0};
+const sel={renk:"",qty:"250 – 500",logo:0};
 const LOGOS=[["No logo","Logosuz"],["Embroidery","Nakış"],["Print","Baskı"],["Woven label","Dokuma etiket"],["Private label","Private label"]];
 let gi=0;
 function show(i){gi=i;document.getElementById("gimg").src=P.gallery[i];document.querySelectorAll("#thumbs button").forEach((b,j)=>b.classList.toggle("on",j===i))}
 function summary(){
-  const s=`${P.name} · ${T("Peak","Siperlik")} ${sel.peak} · ${sel.qty} ${T("pcs","adet")} · ${T(...LOGOS[sel.logo])}`;
+  const s=`${P.name}${sel.renk?" · "+T("Color","Renk")+" "+sel.renk:""} · ${T("Peak","Siperlik")} 3/5/8 cm · ${sel.qty} ${T("pcs","adet")} · ${T(...LOGOS[sel.logo])}`;
   document.getElementById("qSummary").value=s;
   document.getElementById("waBtn").href="https://wa.me/902163084432?text="+encodeURIComponent(T("Hello, I'd like a quote: ","Merhaba, teklif almak istiyorum: ")+s);
 }
@@ -167,8 +195,13 @@ function fill(){
   const c=COLORS[P.color];document.getElementById("tColor").innerHTML=`<span class="dot" style="display:inline-block;vertical-align:-2px;margin-right:6px;background:${c[2]}"></span>${T(c[0],c[1])} · ${T("other colors on request","diğer renkler talep üzerine")}`;
   document.getElementById("tFeat").textContent=P.feat.map(f=>T(...FEATS[f])).join(", ");
   document.getElementById("qTitle").textContent=T("Quote for ","Teklif: ")+P.name;
-  document.getElementById("siblings").innerHTML=PRODUCTS.filter(q=>q.brand===P.brand).map(q=>`<a href="product.html?id=${q.id}" class="${q.id===P.id?"on":""}"><img src="${q.img}" alt="${q.name}">${q.no}</a>`).join("");
-  document.getElementById("related").innerHTML=[...PRODUCTS.filter(q=>q.id!==P.id&&(q.color===P.color||q.feat.some(f=>P.feat.includes(f)))),...PRODUCTS.filter(q=>q.id!==P.id&&q.brand===P.brand)].filter((q,i,a)=>a.indexOf(q)===i).slice(0,4).map(card).join("");
+  const K=KATALOG[P.id];
+  document.getElementById("renkler").innerHTML=K?K.renk.map(c=>`<a data-r="SHL ${c}" data-img="img/katalog/shl-${c.toLowerCase()}.jpg" class="${sel.renk==="SHL "+c?"on":""}"><img src="img/katalog/shl-${c.toLowerCase()}.jpg" alt="SHL ${c}" loading="lazy">${c}</a>`).join("")
+    :RENK_KOD.map(([k,h])=>`<button class="sw${sel.renk===k?" on":""}" data-r="${k}"><i style="background:${h}"></i>${k}</button>`).join("");
+  document.getElementById("renkSec").textContent=sel.renk?"· "+sel.renk:"";
+  const ic=[...(K?K.ic.map(([g,en,tr])=>[g,T(en,tr)]):[]),...(P.brand==="Shelter"?[["img/wa-20.08.57-1.jpeg",T("ABS inner shell","ABS iç kabuk")],["img/wa-20.08.58-1.jpeg",T("Inside of the cap","Şapkanın içi")],["img/shelter-2-2.jpg",T("Outer view","Dış görünüm")]]:[["img/lymra-3.jpg",T("Outer view","Dış görünüm")],["img/lymra-5.jpg",T("Detail","Detay")],["img/wa-20.08.58.jpeg",T("Inside of the cap","Şapkanın içi")]])];
+  document.getElementById("kgal").innerHTML=ic.map(([g,c])=>`<figure data-img="${g}"><img src="${g}" alt="${c}" loading="lazy"><figcaption>${c}</figcaption></figure>`).join("")
+    +`<figure><video src="video/kabuk-kalip.mp4" poster="video/kabuk-kalip-poster.jpg" muted loop playsinline autoplay></video><figcaption>${T("Shell mould (animation)","Kabuk kalıbı (animasyon)")}</figcaption></figure>`;
   summary();
 }
 document.getElementById("thumbs").innerHTML=P.gallery.map((g,i)=>`<button><img src="${g}" alt=""></button>`).join("");
@@ -180,9 +213,15 @@ gm.onclick=()=>gm.classList.toggle("z");
 gm.onmousemove=e=>{const r=gm.getBoundingClientRect();gimg.style.transformOrigin=`${(e.clientX-r.left)/r.width*100}% ${(e.clientY-r.top)/r.height*100}%`};
 gm.onmouseleave=()=>gm.classList.remove("z");
 function group(selq,key,attr){document.querySelectorAll(selq).forEach((b,i)=>b.onclick=()=>{document.querySelectorAll(selq).forEach(x=>x.classList.remove("on"));b.classList.add("on");sel[key]=attr?b.dataset[attr]:i;summary()})}
-group(".peaks button","peak","p");group(".qty button","qty","q");group(".logoopt button","logo");
+group(".qty button","qty","q");group(".logoopt button","logo");
 document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tabs button").forEach(x=>x.classList.toggle("on",x===b));document.querySelectorAll(".tpanel").forEach((p,i)=>p.classList.toggle("on",i==b.dataset.t))});
-document.getElementById("related").addEventListener("click",e=>{const q=e.target.closest(".qbtn");if(q){e.preventDefault();location.href="product.html?id="+PRODUCTS.find(p=>p.name===q.dataset.q).id+"#quote"}});
+document.getElementById("renkler").addEventListener("click",e=>{const a=e.target.closest("[data-r]");if(!a)return;sel.renk=a.dataset.r;if(a.dataset.img)document.getElementById("gimg").src=a.dataset.img;document.querySelectorAll("#renkler [data-r]").forEach(x=>x.classList.toggle("on",x===a));document.getElementById("renkSec").textContent="· "+sel.renk;summary()});
+const lb=document.getElementById("lbox");
+function lbAc(src,cap){lb.querySelector("img").src=src;lb.querySelector("p").textContent=cap||"";lb.classList.add("open")}
+lb.onclick=e=>{if(e.target===lb||e.target.closest(".lx"))lb.classList.remove("open")};
+document.addEventListener("keydown",e=>{if(e.key==="Escape")lb.classList.remove("open")});
+document.getElementById("siperBtn").onclick=()=>lbAc("img/siper-boylari.jpg",T("Peak lengths: 3 cm short · 5 cm medium · 8 cm long","Siper uzunlukları: 3 cm kısa · 5 cm orta · 8 cm uzun"));
+document.getElementById("kgal").addEventListener("click",e=>{const f=e.target.closest("figure[data-img]");if(f)lbAc(f.dataset.img,f.querySelector("figcaption").textContent)});
 document.getElementById("qform").onsubmit=e=>{e.preventDefault();document.getElementById("ok").style.display="block"};
 document.addEventListener("langchange",fill);
 applyLang();

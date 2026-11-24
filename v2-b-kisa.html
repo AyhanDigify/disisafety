@@ -290,11 +290,14 @@ footer{margin-top:50px!important;padding:40px 0 24px!important}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
+<link rel="stylesheet" href="css/v2b-ek.css">
 </head>
 <body>
 
-<header class="hdr"><div class="wrap">
-  <a href="v2-b-kisa.html" class="logo"><img src="img/disidafety-logo-11.png" alt="Disi Safety"></a>
+<header class="hdr">
+<div class="tbar"><div class="wrap"><div class="tl-ct"><a href="tel:+902163084432">+90 216 308 44 32</a><a href="mailto:info@disisafety.com">info@disisafety.com</a></div><nav class="hz" id="hz"></nav></div></div>
+<div class="wrap hrow">
+  <a href="v2-b-kisa.html" class="logo"><img src="img/disi-tekstil-logo.png" alt="Disi Tekstil Promosyon"></a>
   <div class="brb" id="brb"></div>
   <div class="hr">
     <div class="dil"><button data-l="tr">TR</button><button data-l="en">EN</button></div>
@@ -316,7 +319,7 @@ footer{margin-top:50px!important;padding:40px 0 24px!important}
 
 <!-- MARKALAR -->
 <section id="markalar"><div class="wrap">
-  <div class="sh rv"><div><span class="pill" data-en="Our brands">Markalarımız</span><h2 data-en="Three lines, one standard: EN 812">Üç seri, tek standart: EN 812</h2></div><p data-en="Every line is designed, sewn and assembled in our own factory.">Her seri kendi fabrikamızda tasarlanır, dikilir ve monte edilir.</p></div>
+  <div class="sh rv"><div><span class="pill" data-en="Our brands">Markalarımız</span><h2 data-en="Four brands, one manufacturer">Dört marka, tek üretici</h2></div><p data-en="Bump caps, pet caps and PPE — designed and produced in our own factory.">Darbe emici şapka, köpek şapkası ve KKD — kendi fabrikamızda tasarlanır ve üretilir.</p></div>
   <div class="bgrid" id="brands"></div>
 </div></section>
 
@@ -340,7 +343,7 @@ footer{margin-top:50px!important;padding:40px 0 24px!important}
 <footer><div class="wrap">
   <div class="fg">
     <div><img src="img/disidafety-logo-11.png" alt="Disi Safety" style="height:48px"><p style="margin-top:14px;max-width:300px" data-en="EN 812 bump cap manufacturer and corporate textile producer from Istanbul, since 1986.">1986'dan beri İstanbul'da EN 812 darbe emici şapka ve kurumsal tekstil üreticisi.</p></div>
-    <div><h5 data-en="Brands">Markalar</h5><ul><li><a href="category.html?brand=shelter">Shelter®</a></li><li><a href="category.html?brand=lymra">Lymra®</a></li><li><a href="#markalar">Houcap</a></li></ul></div>
+    <div><h5 data-en="Brands">Markalar</h5><ul><li><a href="category.html?brand=shelter">Shelter®</a></li><li><a href="category.html?brand=lymra">Lymra®</a></li><li><a href="houcap.html">Houcap · petcap</a></li><li><a href="#kkd">Disi Safety · KKD</a></li></ul></div>
     <div><h5 data-en="Menu">Menü</h5><ul id="menuF"></ul></div>
     <div><h5 data-en="Contact">İletişim</h5><ul><li>Üsküdar / İstanbul</li><li><a href="tel:+902163084432">+90 216 308 44 32</a></li><li><a href="mailto:info@disisafety.com">info@disisafety.com</a></li><li><a href="bayi.html" data-en="Dealer Login">Bayi Girişi</a></li></ul></div>
   </div>
@@ -349,26 +352,28 @@ footer{margin-top:50px!important;padding:40px 0 24px!important}
 
 <a class="wa" href="https://wa.me/902163084432" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg></a>
 
+<script>window.TASARIM_B=true</script>
 <script src="js/v2.js"></script>
 <script>
 /* Kısa sayfada olmayan bölümler (#uretim, #kkd …) uzun ana sayfaya yönlenir */
-const _yon=l=>(l&&l.startsWith("#")&&!["#teklif","#markalar","#modeller"].includes(l))?"v2-b.html"+l:l;
-AYAR.menu.forEach(m=>m.link=_yon(m.link));AYAR.banner.forEach(b=>b.dugme.link=_yon(b.dugme.link));
-const ACIK={menu:{tr:["Kişisel koruyucu","Kurumsal giyim","Logolu ürünler","Fabrikamız","Sertifika & PDF"],en:["Protective gear","Corporate wear","Branded items","Our factory","Certificates & PDF"]}};
-const RENK=["#fde8e9","#e3ebf7","#fdf1d8"];
+const _yon=l=>(l&&l.startsWith("#")&&!l.startsWith("#modal:")&&!["#teklif","#markalar","#modeller"].includes(l))?"v2-b.html"+l:l;
+AYAR.menu.forEach(m=>m.link=_yon(m.link));AYAR.banner.forEach(b=>b.dugme.link=_yon(b.dugme.link));AYAR.hizli.forEach(h=>h.link=_yon(h.link));AYAR.markalar.forEach(b=>b.link=_yon(b.link));
+const ACIK={menu:{tr:["EN 812 bump cap","Kişisel koruyucu","Kurumsal giyim","Logolu ürünler","Fabrikamız","Sertifika & PDF","PDF & web"],en:["EN 812 bump caps","Protective gear","Corporate wear","Branded items","Our factory","Certificates & PDF","PDF & web"]}};
+const RENK=["#fde8e9","#e3ebf7","#fdf1d8","#e6f1ea"];
 /* Öne çıkan modeller — 01, 02, 03… sırasıyla (marka sonra numara) */
 const MODELLER=[["Shelter","01","img/shelter-11.jpg"],["Shelter","02","img/shelter-333.jpg"],["Shelter","03","img/shelter-4.jpg"],["Shelter","04","img/shelter-5.jpg"],["Shelter","05","img/shelter-6.jpg"],["Shelter","06","img/shelter-7.jpg"],["Shelter","07","img/shelter-8.jpg"],["Shelter","08","img/wa-20.09.01.jpeg"],["Lymra","03","img/lymra-tek-neon.jpg"],["Lymra","04","img/lymra-tek-kirmizi.jpg"]];
 const MARKA_SIRA={Shelter:1,Lymra:2,Houcap:3};
 MODELLER.sort((a,b)=>(MARKA_SIRA[a[0]]-MARKA_SIRA[b[0]])||a[1].localeCompare(b[1]));
 let FILTRE="all";
 function ciz(){
-  document.getElementById("brb").innerHTML=AYAR.markalar.map(b=>b.logo?`<a href="${b.link}" title="${b.ad}"><img src="${b.logo}" alt="${b.ad}"></a>`:`<a class="hc" href="${b.link}" title="${b.ad}">${b.ad.toUpperCase()}<small>${DIL==="tr"?"YENİ":"NEW"}</small></a>`).join("");
+  document.getElementById("brb").innerHTML=AYAR.markalar.map(b=>`<a class="${b.ad==="Houcap"?"hcap":""}" href="${b.link}" title="${b.ad}"><img src="${b.logo}" alt="${b.ad}"><small>${b.alt}</small></a>`).join("");
+  hizliCiz("#hz");
   menuCiz("#menu",m=>`<a href="${m.link}">${svg(m.ikon)}${t(m)}</a>`);
   menuCiz("#menuM",m=>`<a href="${m.link}">${svg(m.ikon)}${t(m)}</a>`);
   menuCiz("#menuF",m=>`<li><a href="${m.link}">${t(m)}</a></li>`);
   document.getElementById("qnav").innerHTML=AYAR.menu.map((m,i)=>`<a href="${m.link}"><span class="i">${svg(m.ikon)}</span><span><b>${t(m)}</b><small>${(ACIK.menu[DIL]||ACIK.menu.tr)[i]||""}</small></span></a>`).join("");
-  markaCiz("#brands",(b,i)=>`<a class="br rv in" href="${b.link}" style="--c:${RENK[i%3]}"><div class="mk"><div><h3>${b.ad}</h3><span class="sub">${b.alt}</span></div>${b.logo?"":`<span class="new">${DIL==="tr"?"YENİ":"NEW"}</span>`}</div><p>${t(b)}</p><div class="vis"><img src="${b.gorsel}" alt="${b.ad} bump cap" loading="lazy"></div><span class="go">→</span></a>`);
-  document.getElementById("pgrid").innerHTML=MODELLER.filter(m=>FILTRE==="all"||FILTRE===m[0]).slice(0,5).map(m=>`<a class="pc${FILTRE!=="all"&&FILTRE!==m[0]?" hide":""}" data-b="${m[0]}" href="product.html?id=${m[0].toLowerCase()}-${m[1]}"><div class="ph"><img src="${m[2]}" alt="${m[0]} ${m[1]}" loading="lazy"><em>EN 812</em><span class="no">${m[1]}</span></div><div class="bd"><div><small>${m[0]}®</small><h4>${m[0]} ${m[1]}</h4></div><span class="q">→</span></div></a>`).join("")+(FILTRE==="Houcap"?`<p style="grid-column:1/-1;color:var(--mut);padding:30px 0">${DIL==="tr"?"Houcap modelleri yakında eklenecek.":"Houcap models coming soon."}</p>`:"");
+  markaCiz("#brands",(b,i)=>`<a class="br rv in" href="${b.link}" style="--c:${RENK[i%4]}"><div class="vis"><img src="${b.gorsel}" alt="${b.ad} ${b.alt}" loading="lazy" style="object-position:${b.konum||"center"}"></div><div class="mk"><div><h3 lang="en">${b.ad}</h3><span class="sub">${b.alt}</span></div>${b.ad==="Houcap"?`<span class="new">${DIL==="tr"?"YENİ":"NEW"}</span>`:""}</div><p>${t(b)}</p><span class="go">→</span></a>`);
+  document.getElementById("pgrid").innerHTML=MODELLER.filter(m=>FILTRE==="all"||FILTRE===m[0]).slice(0,5).map(m=>`<a class="pc${FILTRE!=="all"&&FILTRE!==m[0]?" hide":""}" data-b="${m[0]}" href="product.html?id=${m[0].toLowerCase()}-${m[1]}"><div class="ph"><img src="${m[2]}" alt="${m[0]} ${m[1]}" loading="lazy"><em>EN 812</em><span class="no">${m[1]}</span></div><div class="bd"><div><small>${m[0]}®</small><h4>${m[0]} ${m[1]}</h4></div><span class="q">→</span></div></a>`).join("")+(FILTRE==="Houcap"?`<p style="grid-column:1/-1;color:var(--mut);padding:30px 0">${DIL==="tr"?"Houcap köpek şapkaları → <a href=houcap.html style=color:#fff;text-decoration:underline>Houcap sayfası</a>":"Houcap dog caps → <a href=houcap.html style=color:#fff;text-decoration:underline>Houcap page</a>"}</p>`:"");
   banner("#hero");
 }
 document.getElementById("chips").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;FILTRE=b.dataset.f;document.querySelectorAll("#chips button").forEach(x=>x.classList.toggle("on",x===b));ciz()});

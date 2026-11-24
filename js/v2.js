@@ -7,21 +7,48 @@
 const AYAR = {
   /* Üst menü düğmeleri — satır ekle = düğme eklenir, sil = düğme kalkar */
   menu: [
-    { tr: "KKD",        en: "PPE",        link: "category.html",  ikon: "shield"  },
+    { tr: "Darbe Emici Şapka", en: "Bump Caps", link: "category.html", ikon: "cap"     },
+    { tr: "KKD",        en: "PPE",        link: "#kkd",            ikon: "shield"  },
     { tr: "Tekstil",    en: "Textile",    link: "#tekstil",        ikon: "shirt"   },
     { tr: "Promosyon",  en: "Promotional",link: "#promosyon",      ikon: "gift"    },
     { tr: "Üretim",     en: "Production", link: "#uretim",         ikon: "factory" },
     { tr: "Belgeler",   en: "Documents",  link: "#belgeler",       ikon: "doc"     },
+    { tr: "Kataloglar", en: "Catalogs",   link: "#kataloglar",     ikon: "book"    },
   ],
 
-  /* Markalar — büyük yazılan ad + altında küçük "bump cap" */
+  /* Markalar — logo düğmesi (üst bar) + "Markalarımız" kartları.
+     alt = logonun altındaki küçük yazı. sadeceB:true = yalnız Tasarım B'de gösterilir */
   markalar: [
     { ad: "Shelter", alt: "bump cap", logo: "img/shelter-logo-11.png", gorsel: "img/shelter-8.jpg", link: "category.html?brand=shelter",
       tr: "Endüstriyel, dayanıklı klasik seri", en: "Industrial, durable classic line" },
-    { ad: "Lymra",   alt: "bump cap", logo: "img/lymra-logo-11.png",   gorsel: "img/lymra-tek-neon.jpg",   link: "category.html?brand=lymra",
+    { ad: "Lymra",   alt: "bump cap", logo: "img/lymra-logo-cizgisiz.png", gorsel: "img/lymra-tek-neon.jpg", link: "category.html?brand=lymra",
       tr: "Hafif, fileli, reflektifli spor seri", en: "Lightweight, mesh, reflective sport line" },
-    { ad: "Houcap",  alt: "bump cap", logo: "",                         gorsel: "img/shelter-7.jpg", link: "category.html",
-      tr: "Yeni seri — yakında", en: "New line — coming soon" },
+    { ad: "Houcap",  alt: "petcap",   logo: "img/houcap-logo.png", gorsel: "img/houcap-kare.jpg", link: "houcap.html",
+      tr: "Köpekler için ayarlı şapka — yeni seri", en: "Adjustable caps for dogs — new line" },
+    { ad: "Disi Safety", alt: "KKD", logo: "img/disidafety-logo-11.png", gorsel: "img/slider4.webp", link: "#kkd", sadeceB: true,
+      tr: "Baştan ayağa kişisel koruyucu donanım", en: "Head-to-toe personal protective equipment" },
+  ],
+
+  /* Hızlı işlem düğmeleri (üst şerit) — link "#modal:xxx" = açılır pencere */
+  hizli: [
+    { tr: "Banka Bilgileri", en: "Bank Details", link: "#modal:banka",     ikon: "bank"  },
+    { tr: "Teklif İste",     en: "Request Quote",link: "#teklif",          ikon: "quote" },
+    { tr: "Mail Order",      en: "Mail Order",   link: "#modal:mailorder", ikon: "card"  },
+    { tr: "Katalog",         en: "Catalog",      link: "#kataloglar",      ikon: "book"  },
+  ],
+
+  /* Banka hesapları — ⚠️ ÖRNEK: gerçek IBAN'lar firmadan gelecek */
+  banka: [
+    { banka: "Banka adı (örnek)", sube: "Şube / kod", para: "TL",  iban: "TR00 0000 0000 0000 0000 0000 00" },
+    { banka: "Banka adı (örnek)", sube: "Şube / kod", para: "USD", iban: "TR00 0000 0000 0000 0000 0000 00" },
+    { banka: "Banka adı (örnek)", sube: "Şube / kod", para: "EUR", iban: "TR00 0000 0000 0000 0000 0000 00" },
+  ],
+  hesapSahibi: "Disi Tekstil (unvan firmadan teyit edilecek)",
+
+  /* Kataloglar */
+  kataloglar: [
+    { ad: { tr: "Shelter Kataloğu", en: "Shelter Catalog" }, alt: { tr: "Darbe emici şapka, KKD ve iş giysileri · PDF", en: "Bump caps, PPE and workwear · PDF" }, link: "docs/shelter-katalog.pdf", gorsel: "img/katalog/kapak-shelter.jpg", tur: "pdf" },
+    { ad: { tr: "Promosyon Kataloğu", en: "Promotional Catalog" }, alt: { tr: "Promosyon ürünleri · promosyonajans.com", en: "Promotional products · promosyonajans.com" }, link: "https://www.promosyonajans.com/", gorsel: "img/katalog/kapak-promosyon.jpg", tur: "web" },
   ],
 
   /* Ana sayfa kayan banner (4–5 adet önerilir) */
@@ -32,8 +59,8 @@ const AYAR = {
       metin: { tr: "1986'dan beri İstanbul'daki kendi tesisimizde üretim; logolu, özel etiketli ve ihracata hazır.", en: "Produced in our own Istanbul facility since 1986 — custom logo, private label, export ready." },
       dugme: { tr: "Modelleri İncele", en: "View Models", link: "category.html" } },
     { gorsel: "img/wa-20.09.01.jpeg", konum: "center 35%", etiket: { tr: "Markalarımız", en: "Our Brands" },
-      baslik: { tr: "Shelter · Lymra · <em>Houcap</em>", en: "Shelter · Lymra · <em>Houcap</em>" },
-      metin: { tr: "Üç seri, tek kalite standardı: ABS iç kabuk, EVA darbe emici, file havalandırma.", en: "Three lines, one standard: ABS inner shell, EVA absorber, mesh ventilation." },
+      baslik: { tr: "Shelter · Lymra · <em>Houcap</em> · Disi Safety", en: "Shelter · Lymra · <em>Houcap</em> · Disi Safety" },
+      metin: { tr: "Darbe emici şapkadan köpek şapkasına, KKD'den kurumsal tekstile — hepsi tek üreticiden.", en: "From bump caps to dog caps, PPE to corporate textile — all from one manufacturer." },
       dugme: { tr: "Serileri Gör", en: "See the Lines", link: "#markalar" } },
     { gorsel: "gen/factory.webp", etiket: { tr: "Üretim Gücü", en: "Production" },
       baslik: { tr: "Ayda <em>50.000+</em> şapka, 1.000 m² tesis", en: "<em>50,000+</em> caps a month, 1,000 m² facility" },
@@ -75,6 +102,10 @@ const IKON = {
   factory: '<path d="M3 21V10l5 3V10l5 3V5h4v16z"/><path d="M3 21h18"/>',
   doc: '<path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h8M9 17h6"/>',
   cap: '<path d="M4 15c0-5 3.5-9 8-9s8 4 8 9H4z"/><path d="M2 15h14l6 2"/>',
+  book: '<path d="M4 5c3-1 5-1 8 1 3-2 5-2 8-1v14c-3-1-5-1-8 1-3-2-5-2-8-1z"/><path d="M12 6v14"/>',
+  bank: '<path d="M3 10l9-6 9 6M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 21h18"/>',
+  card: '<rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19M6 15h4"/>',
+  quote: '<path d="M4 4h16v12H8l-4 4z"/><path d="M8 9h8M8 12h5"/>',
   user: '<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/>',
 };
 const svg = (k, sw = 1.7) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round">${IKON[k] || ""}</svg>`;
@@ -91,7 +122,7 @@ function menuCiz(sel, sablon) {
 /* Markalar */
 function markaCiz(sel, sablon) {
   const el = document.querySelector(sel); if (!el) return;
-  el.innerHTML = AYAR.markalar.map(sablon).join("");
+  el.innerHTML = AYAR.markalar.filter(b => !b.sadeceB || window.TASARIM_B).map(sablon).join("");
 }
 
 /* Banner */
@@ -219,3 +250,50 @@ function hdrScroll() {
   const f = () => h.classList.toggle("scrolled", scrollY > 30);
   addEventListener("scroll", f, { passive: true }); f();
 }
+
+/* Hızlı işlem düğmeleri + açılır pencereler (banka / mail order) — Tasarım B */
+function hizliCiz(sel) {
+  document.querySelectorAll(sel).forEach(el => el.innerHTML = AYAR.hizli.map(h => `<a href="${h.link}">${svg(h.ikon, 2)}<span>${t(h)}</span></a>`).join(""));
+}
+const MODAL = {
+  banka: () => `<span class="pill">${DIL === "tr" ? "Ödeme" : "Payment"}</span>
+    <h3>${DIL === "tr" ? "Banka Bilgileri" : "Bank Details"}</h3>
+    <p>${DIL === "tr" ? "Hesap sahibi" : "Account holder"}: <b>${AYAR.hesapSahibi}</b></p>
+    <div class="ibn">${AYAR.banka.map(b => `<div><b>${b.banka}</b><span class="cur">${b.para}</span><small>${b.sube}</small><code>${b.iban}</code><button data-iban="${b.iban}">${DIL === "tr" ? "Kopyala" : "Copy"}</button></div>`).join("")}</div>
+    <p class="note">${DIL === "tr" ? "Örnek bilgilerdir — gerçek IBAN'lar firmadan gelince eklenecek. Havale açıklamasına firma adınızı yazınız." : "Sample data — real IBANs will be added. Please write your company name in the transfer description."}</p>`,
+  mailorder: () => `<span class="pill">${DIL === "tr" ? "Kredi kartı" : "Credit card"}</span>
+    <h3>Mail Order</h3>
+    <p>${DIL === "tr" ? "Kredi kartınızla, siteye kart bilgisi girmeden ödeme yapabilirsiniz." : "Pay by credit card without entering card details on the website."}</p>
+    <ol class="steps">
+      <li>${DIL === "tr" ? "Mail order formunu indirin ve doldurun." : "Download and fill in the mail order form."}</li>
+      <li>${DIL === "tr" ? "Kart sahibi olarak imzalayın." : "Sign it as the card holder."}</li>
+      <li>${DIL === "tr" ? "Formu ve kimlik fotokopisini e-posta ile gönderin." : "Email the form with a copy of your ID."}</li>
+      <li>${DIL === "tr" ? "Ödemeniz alınınca siparişiniz onaylanır." : "Your order is confirmed once payment is received."}</li>
+    </ol>
+    <div class="mdl-cta"><a class="btn btn-red" href="#" onclick="return false" title="Form firmadan gelecek">${DIL === "tr" ? "Formu İndir (PDF)" : "Download Form (PDF)"}</a>
+    <a class="btn btn-ghost" href="mailto:info@disisafety.com?subject=Mail%20Order">${DIL === "tr" ? "E-posta ile Gönder" : "Send by Email"}</a></div>
+    <p class="note">${DIL === "tr" ? "Mail order formu firmadan gelince indirme düğmesi çalışacak." : "Download will work once the form is supplied."}</p>`,
+};
+function modalAc(ad) {
+  if (!MODAL[ad]) return;
+  let m = document.querySelector(".mdl");
+  if (!m) {
+    m = document.createElement("div"); m.className = "mdl";
+    m.innerHTML = `<div class="mdl-box" role="dialog" aria-modal="true"><button class="mdl-x" aria-label="Kapat">×</button><div class="mdl-in"></div></div>`;
+    document.body.appendChild(m);
+    m.addEventListener("click", e => {
+      if (e.target === m || e.target.closest(".mdl-x")) { m.classList.remove("open"); document.body.classList.remove("noscroll"); }
+      const k = e.target.closest("[data-iban]");
+      if (k) { navigator.clipboard?.writeText(k.dataset.iban.replace(/\s/g, "")); k.textContent = DIL === "tr" ? "Kopyalandı ✓" : "Copied ✓"; }
+    });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") { m.classList.remove("open"); document.body.classList.remove("noscroll"); } });
+  }
+  m.querySelector(".mdl-in").innerHTML = MODAL[ad]();
+  requestAnimationFrame(() => m.classList.add("open")); document.body.classList.add("noscroll");
+}
+document.addEventListener("click", e => {
+  const a = e.target.closest('a[href^="#modal:"]'); if (!a) return;
+  e.preventDefault(); modalAc(a.getAttribute("href").slice(7));
+});
+/* Bağlantı #modal:banka ile açılırsa pencereyi doğrudan aç */
+addEventListener("load", () => { if (location.hash.startsWith("#modal:")) modalAc(location.hash.slice(7)); });

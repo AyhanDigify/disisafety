@@ -23,7 +23,7 @@ PRODUCTS.forEach(p=>{p.name=p.brand+" "+p.no;p.gallery=[p.img,...(p.brand==="She
 
 /* i18n */
 const I18N={tr:{}};
-let LANG="en";try{LANG=localStorage.getItem("disi_lang")||"en"}catch(e){}
+let LANG="en";try{LANG=localStorage.getItem("disi_v2_dil")||localStorage.getItem("disi_lang")||(/v2-|bayi|houcap/.test(document.referrer)?"tr":"en")}catch(e){}
 const T=(en,tr)=>LANG==="tr"?tr:en;
 function addTR(d){Object.assign(I18N.tr,d)}
 const EN_CACHE={};
@@ -34,7 +34,7 @@ function applyLang(){
   document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===LANG));
   document.dispatchEvent(new Event("langchange"));
 }
-function setLang(l){LANG=l;try{localStorage.setItem("disi_lang",l)}catch(e){}applyLang()}
+function setLang(l){LANG=l;try{localStorage.setItem("disi_lang",l);localStorage.setItem("disi_v2_dil",l)}catch(e){}applyLang()}
 
 const WA='<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.3 0 .5l-.4.6-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>';
 function shell(){
