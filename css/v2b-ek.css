@@ -84,3 +84,24 @@
 .qnav a b{font-size:16px;line-height:1.2}
 @media(max-width:1180px){.qnav{grid-template-columns:repeat(4,1fr)}}
 @media(max-width:760px){.qnav{grid-template-columns:1fr 1fr}}
+
+/* Banner: yükseklik metne göre uzar — uzun (EN) metinde düğmeler ile 01-05 sekmeleri çakışmaz */
+.hbox{height:auto;min-height:340px}
+.hbox .sl-track{display:grid}
+.hbox .sl{position:relative;grid-area:1/1;inset:auto}
+.hbox .sl-bg{min-height:300px}
+.hbox .sl-in{padding:26px 30px 84px 52px}
+.hbox .sl-cta .btn{white-space:nowrap}
+
+/* Dar ekran: 4 logo düğmesi ikinci satıra iner (logo kaybolmaz) */
+@media(max-width:1180px){
+  .hdr .wrap.hrow,.hdr.scrolled .wrap.hrow{height:auto;flex-wrap:wrap;row-gap:10px;padding-top:10px;padding-bottom:12px}
+  .brb{order:3;width:100%;justify-content:center;border-left:0;padding-left:0}
+}
+@media(max-width:760px){
+  .brb{display:flex!important;justify-content:flex-start;overflow-x:auto;gap:8px;scrollbar-width:none}
+  .brb a{min-width:92px;height:54px;padding:5px 10px;flex-shrink:0}
+  .brb img{height:24px}.brb a.hcap img{height:32px}
+  .brb small{font-size:9px}
+}
+@media(max-width:1180px){.sl-nav button.on{width:60px}.sl-nav button.on b{display:none}.sl-nav button.on span{display:inline}}

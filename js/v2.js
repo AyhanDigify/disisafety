@@ -111,6 +111,7 @@ const IKON = {
 const svg = (k, sw = 1.7) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round">${IKON[k] || ""}</svg>`;
 
 let DIL = "tr"; try { DIL = localStorage.getItem("disi_v2_dil") || "tr"; } catch (e) {}
+{ const q = new URLSearchParams(location.search).get("lang"); if (q === "tr" || q === "en") { DIL = q; try { localStorage.setItem("disi_v2_dil", q); } catch (e) {} } }
 const t = o => (o && typeof o === "object") ? (o[DIL] ?? o.tr) : o;
 
 /* Menü */
